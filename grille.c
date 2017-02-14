@@ -1,13 +1,17 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
+#include "grille.h"
 
 
-typedef struct Case
+
+extern long int random(void);
+
+struct Case
 {
    char couleur;
    int dedant;
-}*grille,Case;   
+};   
 
 
 grille Grille(int taille)
@@ -20,11 +24,16 @@ grille Grille(int taille)
 
 void Liberation(grille a)
 {
+    if(a!=NULL)
+  {
     free(a);
+    a=NULL;
+  }
 }
 
 char constructeur()
 {
+    /*srand((unsigned)time(NULL));*/
     int i=random()%6+1;     
     char couleur;
     switch(i)
@@ -41,14 +50,27 @@ char constructeur()
 }
  
 
+char get_couleur(grille g) {
+	return (g->couleur);
+}
 
+int get_dedant(grille g) {
+	return (g->dedant);
+}
+
+grille augemente_pointeur(grille g)
+{
+    g=g+1;
+    return (g);
+}
 
 void init_grille(grille a,int taille)
 {
      int i=0;
      for(i=0;i<taille*taille;i++)
      {
-         a[i].couleur=constructeur();
+         a->couleur=constructeur();
+         a=augemente_pointeur(a);
      }
 }
 
@@ -78,39 +100,6 @@ void init_grille_fichier(grille a,FILE *fp,int taille)
 
 
 
-int main()
-{
-    int taille;
-    int i;
-    FILE* fp=fopen("couleur.dat","r");
-    printf("Donnez la taille de grille,s'il vous plaît:");
-    scanf("%d",&taille);
-    grille g=Grille(taille);
-    /*************************************************/
-    printf("ici,c'est le résultat d'initialisation à partir de valeurs aléatoires:\n");
-    init_grille(g,taille);
-    for(i=0;i<taille*taille;i++)
-    {
-       printf("%c ",g[i].couleur);
-       if(i%taille==taille-1)
-       printf("\n");
-    }   
-
-     /******************************************************************/
-       printf("ici,c'est le résultat d'initialisation à partir de valeurs contenue dans un fichier:\n");
-        cree_fichier_de_couleur(taille);
-        init_grille_fichier(g,fp,taille);
-        for(i=0;i<taille*taille;i++)
-       {
-       printf("%c ",g[i].couleur);
-       if(i%taille==taille-1)
-       printf("\n");
-       } 
-
-     Liberation(g);
-     
-     return 0;
-}
 
 
      
