@@ -10,7 +10,7 @@ extern long int random(void);
 struct Case
 {
      char couleur;
-     int dedant;
+     int dedans;
 };   
 
 
@@ -50,7 +50,7 @@ char get_couleur(grille g) {
 }
 
 int get_dedans(grille g) {
-    return (g->dedant);
+    return (g->dedans);
 }
 
 grille augmente_pointeur(grille g)
