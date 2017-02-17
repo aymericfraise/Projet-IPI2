@@ -10,7 +10,7 @@ extern long int random(void);
 struct Case
 {
      char couleur;
-     int dedans;
+     int dedant;
 };   
 
 
@@ -29,7 +29,6 @@ void liberation(grille a)
 
 char constructeur()
 {
-    /*srand((unsigned)time(NULL));*/
     int i=random()%6+1;     
     char couleur;
     switch(i){
@@ -50,7 +49,7 @@ char get_couleur(grille g) {
 }
 
 int get_dedans(grille g) {
-    return (g->dedans);
+    return (g->dedant);
 }
 
 grille augmente_pointeur(grille g)
@@ -62,7 +61,8 @@ grille augmente_pointeur(grille g)
 void init_grille(grille a,int taille)
 {
     int i=0;
-    for(i=0;i<taille*taille;i++){
+    for(i=0;i<taille*taille;i++)
+    {
          a->couleur=constructeur();
          a=augmente_pointeur(a);
     }
@@ -75,7 +75,7 @@ void cree_fichier_de_couleur(int taille)
     int i;
     for(i=0;i<taille*taille;i++)
     {
-         fputc(constructeur(),fp);
+        fputc(constructeur(),fp);
     }
     fclose(fp);
 }
