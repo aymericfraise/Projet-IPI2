@@ -8,7 +8,7 @@ typedef struct Case Case ,*grille;
 
 grille Grille(int);
 
-void Liberation(grille);
+void liberation(grille);
 
 char constructeur();
 
@@ -16,9 +16,9 @@ void init_grille(grille ,int);
 
 char get_couleur(grille );
 
-int get_dedant(grille );
+int get_dedans(grille );
 
-grille augemente_pointeur(grille );
+grille augmente_pointeur(grille );
 
 void cree_fichier_de_couleur(int);
 
