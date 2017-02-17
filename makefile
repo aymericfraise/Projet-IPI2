@@ -9,7 +9,7 @@ grille.o:grille.c grille.h
 test_grille.o:grille.h test_grille.c
 	$(CC) $(CFLAGS) -c test_grille.c
 
-prog:test_grille.o grille.o
+prog:test_unitaires.o grille.o
 	$(CC) $(CFLAGS) $^ -o $@
 
 clean:
