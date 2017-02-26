@@ -17,7 +17,7 @@ void freel(liste l);
 
 /*donne a la case i de la grille g la valeur c*/
 void change1(grille g,int i,char c);
-/*renvoie la liste des position des cases appartenant a la composante conexe*/
+/*renvoie la liste des position des cases appartenant a la composante connexe*/
 liste composante(grille,liste,int);
 /*donne au case de laliste l dans la grille g la valeur c*/
 void changeall(grille g,liste l,char c);
