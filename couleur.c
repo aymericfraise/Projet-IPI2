@@ -48,22 +48,18 @@ liste composante(grille g,liste l,int taille){
     ret=makel(i,ret);
     if (i%taille!=0 && !(g[i-1].dedans) && g[i].couleur==g[i-1].couleur){
       g[i-1].dedans=1;
-      printf("j'ajoute %d a ma liste\n",i-1 );
       l=makel(i-1,l);
     }
     if (i%taille!=taille-1 && !(g[i+1].dedans) && g[i].couleur==g[i+1].couleur) {
       g[i+1].dedans=1;
-      printf("j'ajoute %d a ma liste\n",i+1 );
       l=makel(i+1,l);
     }
     if (i/taille!=0 && !(g[i-taille].dedans) && g[i].couleur==g[i-taille].couleur) {
       g[i-taille].dedans=1;
-      printf("j'ajoute %d a ma liste\n",i-taille);
       l=makel(i-taille,l);
     }
     if (i/taille!=taille-1 && !(g[i+taille].dedans) && g[i].couleur==g[i+taille].couleur) {
       g[i+taille].dedans=1;
-      printf("j'ajoute %d a ma liste\n",i+taille );
       l=makel(i+taille,l);
     }
   }
