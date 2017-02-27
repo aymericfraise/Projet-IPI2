@@ -1,3 +1,9 @@
+/**
+  \file [<couleur.c>]
+  \brief {contient les fonction de couleurs}
+  \author {Min,Yoann}
+**/
+
 #include<time.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -6,14 +12,27 @@
 #include"couleur.h"
 
 
-
+/**
+  \struct liste
+**/
 struct t_liste {
   int position;
   struct t_liste *suivant;
 };
 
+/**
+  \fn int listevide(liste l)
+  \param liste à tester
+  \return 1 si vide 0 sinon
+**/
 int listevide(liste l){return (l==NULL);}
 
+/**
+  \fn liste makel(int d,liste l)
+  \param entier tete de la nouvelle liste
+  \param liste queue de la nouvelle liste
+  \return la nouvelle liste
+**/
 liste makel(int d,liste l){
   cell *c;
   c=(cell *)malloc(sizeof(cell));
@@ -22,14 +41,28 @@ liste makel(int d,liste l){
   return c;
 }
 
+/**
+  \fn liste sui(liste l)
+  \param liste dont on veut le suivant
+  \return la queue de la liste
+**/
 liste sui(liste l){
   return l->suivant;
 }
 
+/**
+  \fn int pop(liste l)
+  \param liste dont on veut la tete
+  \return la tete de la liste
+**/
 int pop(liste l){
   return l->position;
 }
 
+/**
+  \fn int pop(liste l)
+  \param liste a liberer
+**/
 void freel(liste l){
   if (l!=NULL) {
     freel(l->suivant);
@@ -42,6 +75,13 @@ void freel(liste l){
   g->couleur=couleur;
 }*/
 
+/**
+  \fn liste composante(grille g,liste l,int taille)
+  \param la grille de jeu
+  \param la liste de la composante a l'etat i-1 (marche avec la liste a n'importe quel etat anterieur)
+  \param taille de la grille
+  \return la liste de la composante
+**/
 liste composante(grille g,liste l,int taille){
   liste ret=NULL;
   int i;
@@ -74,6 +114,12 @@ liste composante(grille g,liste l,int taille){
   return ret;
 }
 
+/**
+  \fn void changeall(grille g,liste l,char couleur)
+  \param la grille de jeu
+  \param la liste a changer
+  \param la couleur a metre
+**/
 void changeall(grille g,liste l,char couleur) {
   if (l!=NULL) {
     change1(g,l->position,couleur);
@@ -81,6 +127,12 @@ void changeall(grille g,liste l,char couleur) {
   }
 }
 
+/**
+  \fn int win(grille g,int taille)
+  \param la grille de jeu
+  \param la taille de la grille
+  \return 1 en cas de victoire 0 sinon
+**/
 int win(grille g,int taille){
   int i;
   for (i = 0;i < taille*taille; i++)
