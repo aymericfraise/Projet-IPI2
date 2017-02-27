@@ -71,3 +71,27 @@ void init_grille_fichier(grille a,FILE *fp,int taille)
      fclose(fp); 
 }
 
+
+
+On définit d’abord la structure de liste pour stocker la composante connexe.
+listevide est un test de vacuité.
+makel est le constructeur il place l’entier au sommet de la liste.
+pop recupere la tete.
+sui renvoie le suivant.
+freel libère la mémoire.
+
+change1 change la valeur d’une case dans la grille.
+
+La gestion de la composante connexe ce fait en deux instances au niveaux d’une liste et de chaque case.
+Chaque case sait si elle appartient à la composante.
+A chaque instant la fonction composante met a jour la liste des case appartenant a la composante et met a jour ces dernière.
+
+changeall applique change1 a chaque case de la liste.
+
+win regarde si toute le case sont dans la composante.
+
+
+A chaque itération :
+-on demande une couleur
+-changeall(grille,composante(grille,liste),couleur)
+-win(grille,taille)
