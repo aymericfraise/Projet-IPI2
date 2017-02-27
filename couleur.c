@@ -52,20 +52,25 @@ liste composante(grille g,liste l,int taille){
     if (i%taille!=0 && !(get_dedans(aug_g(g,i-1))) &&  get_couleur(aug_g(g,i))==get_couleur(aug_g(g,i-1))){
       change_dedans(g,i-1,1);
       l=makel(i-1,l);
+     /* printf("%d ",i-1);*/
     }
     if (i%taille!=taille-1 && !(get_dedans(aug_g(g,i+1))) && get_couleur(aug_g(g,i))==get_couleur(aug_g(g,i+1))) {
       change_dedans(g,i+1,1);
       l=makel(i+1,l);
+      /*printf("%d",i+1);*/
     }
     if (i/taille!=0 && !(get_dedans(aug_g(g,i-taille))) && get_couleur(aug_g(g,i))==get_couleur(aug_g(g,i-taille))) {
       change_dedans(g,i-taille,1);
       l=makel(i-taille,l);
+      /*printf("%d",i-taille);*/
     }
     if (i/taille!=taille-1 && !(get_dedans(aug_g(g,i+taille))) && get_couleur(aug_g(g,i))==get_couleur(aug_g(g,i+taille))) {
       change_dedans(g,i+taille,1);
       l=makel(i+taille,l);
+     /* printf("%d",i+taille);*/
     }
   }
+  
   return ret;
 }
 
