@@ -1,9 +1,11 @@
 #include<time.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include<stdio.h>
 #include"grille.h"
 #include"couleur.h"
-#include<stdio.h>
+
+
 
 struct t_liste {
   int position;
@@ -35,9 +37,10 @@ void freel(liste l){
   }
 }
 
-void change1(grille g,int i,char couleur){
-  g[i].couleur=couleur;
-}
+/*void change1(grille g,int i,char couleur){
+  g=aug_g(g,i);
+  g->couleur=couleur;
+}*/
 
 liste composante(grille g,liste l,int taille){
   liste ret=NULL;
@@ -46,20 +49,20 @@ liste composante(grille g,liste l,int taille){
     i=pop(l);
     l=sui(l);
     ret=makel(i,ret);
-    if (i%taille!=0 && !(g[i-1].dedans) && g[i].couleur==g[i-1].couleur){
-      g[i-1].dedans=1;
+    if (i%taille!=0 && !(get_dedans(aug_g(g,i-1))) &&  get_couleur(aug_g(g,i))==get_couleur(aug_g(g,i-1))){
+      change_dedans(g,i-1,1);
       l=makel(i-1,l);
     }
-    if (i%taille!=taille-1 && !(g[i+1].dedans) && g[i].couleur==g[i+1].couleur) {
-      g[i+1].dedans=1;
+    if (i%taille!=taille-1 && !(get_dedans(aug_g(g,i+1))) && get_couleur(aug_g(g,i))==get_couleur(aug_g(g,i+1))) {
+      change_dedans(g,i+1,1);
       l=makel(i+1,l);
     }
-    if (i/taille!=0 && !(g[i-taille].dedans) && g[i].couleur==g[i-taille].couleur) {
-      g[i-taille].dedans=1;
+    if (i/taille!=0 && !(get_dedans(aug_g(g,i-taille))) && get_couleur(aug_g(g,i))==get_couleur(aug_g(g,i-taille))) {
+      change_dedans(g,i-taille,1);
       l=makel(i-taille,l);
     }
-    if (i/taille!=taille-1 && !(g[i+taille].dedans) && g[i].couleur==g[i+taille].couleur) {
-      g[i+taille].dedans=1;
+    if (i/taille!=taille-1 && !(get_dedans(aug_g(g,i+taille))) && get_couleur(aug_g(g,i))==get_couleur(aug_g(g,i+taille))) {
+      change_dedans(g,i+taille,1);
       l=makel(i+taille,l);
     }
   }
@@ -75,7 +78,10 @@ void changeall(grille g,liste l,char couleur) {
 
 int win(grille g,int taille){
   int i;
-  for (i = 0;g[i].dedans && i < taille*taille; i++)
-  i=g[i].dedans;
-  return i;
+  for (i = 0;i < taille*taille; i++)
+  {
+     if(get_dedans(aug_g(g,i)) ==0)
+      return 0;
+   }
+   return 1;
 }

@@ -52,10 +52,22 @@ int get_dedans(grille g) {
     return (g->dedans);
 }
 
-grille augmente_pointeur(grille g)
+grille aug_g(grille g,int distance)
 {
-    g=g+1;
+    g=g+distance;
     return (g);
+}
+
+void change1(grille g,int taille,char couleur)
+{
+       g=aug_g(g,taille);
+       g->couleur=couleur;
+}
+
+void change_dedans(grille g,int taille,int dedans)
+{
+      g=aug_g(g,taille);
+      g->dedans=dedans;
 }
 
 void init_grille(grille a,int taille)
@@ -64,7 +76,7 @@ void init_grille(grille a,int taille)
     for(i=0;i<taille*taille;i++)
     {
          a->couleur=constructeur();
-         a=augmente_pointeur(a);
+         a=aug_g(a,1);
     }
 }
 

@@ -1,6 +1,6 @@
 #include<time.h>
 #include <stdbool.h>
-#include <stdlib.h>
+
 
 /*definition de la structure de liste d'entier*/
 typedef struct t_liste cell,*liste;
@@ -16,7 +16,7 @@ liste sui(liste l);
 void freel(liste l);
 
 /*donne a la case i de la grille g la valeur c*/
-void change1(grille g,int i,char c);
+/*void change1(grille g,int i,char c);*/
 /*renvoie la liste des position des cases appartenant a la composante connexe*/
 liste composante(grille,liste,int);
 /*donne au case de laliste l dans la grille g la valeur c*/

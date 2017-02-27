@@ -10,7 +10,7 @@ void grille_couleur_init_aleatoire(grille g, int taille){
     for(i=0;i<taille*taille;i++)
     {
         printf("%c ",get_couleur(g));
-        g=augmente_pointeur(g);
+        g=aug_g(g,1);
         if(i%taille==taille-1)
             printf("\n");
     }  
@@ -25,7 +25,7 @@ void grille_couleur_init_fichier(grille g, FILE* fp, int taille){
     init_grille_fichier(g,fp,taille);
     for(i=0;i<taille*taille;i++){
         printf("%c ",get_couleur(g));
-        g=augmente_pointeur(g);
+        g=aug_g(g,1);
         if(i%taille==taille-1)
             printf("\n");
     }    
@@ -58,12 +58,13 @@ int main()
     grille h=Grille(taille);
     init_grille(h,taille);
     /*on change chaque case de h une par une pour la metre en rouge*/
-    for ( i = 0; i < taille*taille; i++) {
+     int i;
+    for (i = 0; i < taille*taille; i++) {
       change1(h,i,'R');
     }
     printf("\n" );
     for ( i = 0; i < taille*taille; i++) {
-      printf("%c ",get_couleur1(h[i]));
+      printf("%c ",get_couleur(aug_g(h,i)));
       if(i%taille==taille-1)
           printf("\n");
     }
@@ -86,7 +87,7 @@ int main()
     }
     printf("\n" );
      for ( i = 0; i < taille*taille; i++) {
-      printf("%c ",get_couleur1(g[i]));
+      printf("%c ",get_couleur(aug_g(g,i)));
       if(i%taille==taille-1)
           printf("\n");
     }
@@ -95,7 +96,7 @@ int main()
     /*on utilise changeall et verifie le resultat*/
     changeall(g,l,'M');
     for ( i = 0; i < taille*taille; i++) {
-      printf("%c ",get_couleur1(g[i]));
+      printf("%c ",get_couleur(aug_g(g,i)));
       if(i%taille==taille-1)
           printf("\n");
     }
@@ -103,7 +104,7 @@ int main()
     l=composante(g,l,taille);
     changeall(g,l,'B');
     for ( i = 0; i < taille*taille; i++) {
-      printf("%c ",get_couleur1(g[i]));
+      printf("%c ",get_couleur(aug_g(g,i)));
       if(i%taille==taille-1)
           printf("\n");
     }
