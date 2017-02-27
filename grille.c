@@ -28,7 +28,7 @@ struct Case
 grille Grille(int taille)
 {
      grille ret=NULL;
-     ret=malloc(taille*taille*sizeof(Case));	
+     ret=calloc(taille*taille,sizeof(Case));	
      return ret;
 }
 
