@@ -59,7 +59,7 @@ int main()
     init_grille(h,taille);
     /*on change chaque case de h une par une pour la metre en rouge*/
      int i;
-    for (i = 0; i < taille*taille; i++) {
+    for (i = 0; i < taille*taille; i++) { 
       change1(h,i,'R');
     }
     printf("\n" );
@@ -71,18 +71,21 @@ int main()
     liste k=NULL;
     
     k=makel(0,k);
+	liste temps=NULL;
     k=composante(h,k,taille);
-    /* while (!(listevide(k))) {
+     while (!(listevide(k))) {
       printf("%d ",pop(k));
+	temps=k;
       k=sui(k);
-    }*/
+	free(temps);
+    }
 
     /*la liste est initialisée a 0*/
     liste l=NULL;
     l=makel(0,l);
     
     /*on recupere la composante connexe*/
-    l=composante(g,l,taille);
+    l=composante(g,l,taille); 	 	
     k=l;
       while (!(listevide(l))) {
       printf("%d ",pop(l));
@@ -105,13 +108,13 @@ int main()
           printf("\n");
     }
     printf("\n" );
-   /* l=composante(g,l,taille);
+    l=composante(g,l,taille);
     changeall(g,l,'B');
     for ( i = 0; i < taille*taille; i++) {
       printf("%c ",get_couleur(aug_g(g,i)));
       if(i%taille==taille-1)
           printf("\n");
-    }*/
+    }
 
      
 
@@ -125,6 +128,8 @@ int main()
     liberation(h);
     freel(l);
     freel(k);
+
+
     
    
 
