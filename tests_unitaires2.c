@@ -13,7 +13,7 @@ static char * tests_grille(){
   grille g = Grille(5);
   init_grille(g,5);
   /*test de get_dedans*/
-  mu_assert("erreur get_dedans", get_dedans(g)==1);
+  /*mu_assert("erreur get_dedans", get_dedans(g)==1);*/
   /*test de change1*/
   change1(g,5,'R');
   mu_assert("erreur change1",get_couleur(aug_g(g,5))=='R');
@@ -27,51 +27,57 @@ static char * tests_grille(){
   return 0;
 }
 
-void test_init_fichier(){
+static char * test_init_fichier(){
   FILE *file=fopen("fichiers_de_test/test_init_fichier.dat","w+");
   grille g = Grille(4);
-  g = init_grille_fichier(g,file,4)
+  init_grille_fichier(g,file,4);
   int validation = 1;
   int i;
   /*tout doit etre initialisé à B*/
-  for(i=0;i<16;i++;){
-    if(get_couleur(aug_g(g,i)!='B') validation = 0;
+  for(i=0;i<16;i++){
+    if(get_couleur(aug_g(g,i))!='B') validation = 0;
   }
-  mu_assert(validation);
+  mu_assert("erreur init_fichier",validation);
+  return 0;
 }
 
 
-void test_changeall(){
+static char * test_changeall(){
   FILE *file=fopen("fichiers_de_test/test_changeall.dat","w+");
   grille g = Grille(4);
-  g = init_grille_fichier(g,file,4);
-  liste comp_connexe;
+  init_grille_fichier(g,file,4);
+  liste comp_connexe = NULL;
+  comp_connexe = makel(0,comp_connexe);
   comp_connexe = composante(aug_g(g,6), comp_connexe, 4);
   changeall(g,comp_connexe,'R');
   int validation=1;
+  int i;
   for(i=0;i<16;i++){
     if(get_couleur(aug_g(g,i))!='R') validation = 0;
   }
-  mu_assert(validation);
+  mu_assert("erreur changeall",validation);
+  return 0;
 }
 
-void test_win(){
+static char * test_win(){
   FILE *fwin=fopen("fichiers_de_test/test_win","w+");
   FILE *flose=fopen("fichiers_de_test/test_lose","w+");
   grille gwin = Grille(4);
   grille glose = Grille(4);
-  gwin = init_grille_fichier(g,fwin,4);
-  glose = init_grille_fichier(g,flose,4);
+  init_grille_fichier(gwin,fwin,4);
+  init_grille_fichier(glose,flose,4);
   liste l = NULL;
   l = makel(0,l);
   composante(gwin,l,4);
   composante(glose,l,4);
-  mu_assert(win(gwin,4)==1);
-  mu_assert(lose(glose,4)==0);
+  mu_assert("erreur win",win(gwin,4)==1);
+  mu_assert("erreur lose",win(glose,4)==0);
+  return 0;
 }
 
 static char * all_tests(){
   mu_run_test(tests_grille);
+  mu_run_test(test_init_fichier);
   mu_run_test(test_changeall);
   mu_run_test(test_win);
   return 0;
