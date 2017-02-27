@@ -85,9 +85,12 @@ void freel(liste l){
 liste composante(grille g,liste l,int taille){
   liste ret=NULL;
   int i;
+  liste temps=NULL;
   while (l!=NULL) {
     i=pop(l);
+    temps=l;
     l=sui(l);
+    free(temps);
     ret=makel(i,ret);
     if (i%taille!=0 && !(get_dedans(aug_g(g,i-1))) &&  get_couleur(aug_g(g,i))==get_couleur(aug_g(g,i-1))){
       change_dedans(g,i-1,1);
