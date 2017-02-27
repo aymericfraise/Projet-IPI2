@@ -1,12 +1,14 @@
-          Rapport
+RAPPORT : ALGORITHMES
 
-1.on définit une structure Case qui est composée d’une variable couleur et une variable dedant.
+GRILLE.C
+1. On définit une structure Case qui est composée d’une variable couleur et d'une variable "dedans". Cette dernière permettra de déterminer par la suite si la case en question sera comprise dans la tâche de la case supérieur gauche.
+
 struct Case{
    char couleur;
    int dedans;
 };
 
-2.la grille est composée de cases,on écrit une fonction qui s’appelle Grille(int taille)pour créer une grille de taille carrée,dans cette fonction,on utilise la fonction malloc pour obtenir un espace continu.
+2. La grille est composée de cases. On écrit une fonction pour créer une grille de taille carrée. On utilise la fonction malloc pour obtenir un espace continu. Taille représente la longueur d'un côté.
 grille Grille(int taille)
 {
         grille ret=NULL;
@@ -14,7 +16,7 @@ grille Grille(int taille)
         return ret;
 }
 
-3.pour libérer l’espace mémoire occupé par une grille,on a écrit une fonction qui s’appelle Liberation(grille a) en utilisant la fonction free();
+3. Pour libérer l’espace mémoire occupé par une grille, on a écrit une fonction qui s’appelle Liberation(grille a) en utilisant la fonction free();
 void Liberation(grille a)
 {
     if(a!=NULL)
@@ -41,15 +43,19 @@ char constructeur()
    }
     return couleur;
 }
+
 5.on écrit une fonction qui s’appelle get_couleur(grille g) pour obtenir la couleur d’une case
 char get_couleur(grille g) {
 	return (g->couleur);
 }
+
 6.on écrit une fonction qui s’appelle get_dedant(grille g)pour obtenir la valeur dedant d’une case
 int get_dedant(grille g) {
 	return (g->dedant);
 }
+
 7.on écrit une fonction qui s’appelle augemente_pointeur(grille g)pour augmenter la valeur de pointeur g. 
+
 8.pour initialiser la grille à partir de valeurs aléatoires,on utilise la fonction ci-dessous.
 void init_grille(grille a,int taille)
 {
@@ -60,6 +66,7 @@ void init_grille(grille a,int taille)
          a=augemente_pointeur(a);
      }
 }
+
 9.pour initialiser la grille à partir de valeurs contenues dans un fichier ,on écrit une fonction 
 void init_grille_fichier(grille a,FILE *fp,int taille)
 {
@@ -71,8 +78,7 @@ void init_grille_fichier(grille a,FILE *fp,int taille)
      fclose(fp); 
 }
 
-
-
+COULEUR.C :
 On définit d’abord la structure de liste pour stocker la composante connexe.
 listevide est un test de vacuité.
 makel est le constructeur il place l’entier au sommet de la liste.
