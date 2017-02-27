@@ -2,8 +2,8 @@ VERSION :
 1.0.A
 
 AUTEURS	: MYAJ Corps.
-Min Li
-Yoann Gouet
+Min "Iimum" Li
+Yoann "Rouanne" Gouet
 Aymeric "Juda" Fraise
 Jérémie "Jariiark" Sold
 
