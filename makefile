@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-std=c11 -Wall -Wextra -g
+CFLAGS=-std=gnu89 -Wall -Wextra -g
 
 all: prog tests_unitaires2 tests_unitaires
 

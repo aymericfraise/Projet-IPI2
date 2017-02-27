@@ -51,8 +51,8 @@ MU_TEST(test_changeall){
 }
 
 MU_TEST(test_win){
-  FILE *fwin=fopen("fichiers_de_test/test_win","w+");
-  FILE *flose=fopen("fichiers_de_test/test_lose","w+");
+  FILE *fwin=fopen("fichiers_de_test/test_win.dat","w+");
+  FILE *flose=fopen("fichiers_de_test/test_lose.dat","w+");
   grille gwin = Grille(4);
   grille glose = Grille(4);
   init_grille_fichier(gwin,fwin,4);
