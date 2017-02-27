@@ -79,23 +79,32 @@ void init_grille_fichier(grille a,FILE *fp,int taille)
 }
 
 COULEUR.C :
-On définit d’abord la structure de liste pour stocker la composante connexe.
-listevide est un test de vacuité.
-makel est le constructeur il place l’entier au sommet de la liste.
-pop recupere la tete.
-sui renvoie le suivant.
-freel libère la mémoire.
+1. On définit d’abord la structure de liste pour stocker la composante connexe.
+struct t_liste {
+  int position;
+  struct t_liste *suivant;
+};
 
-change1 change la valeur d’une case dans la grille.
+2. listevide est un test de vacuité.
 
-La gestion de la composante connexe ce fait en deux instances au niveaux d’une liste et de chaque case.
+3. makel est le constructeur il place l’entier au sommet de la liste.
+
+4. pop recupere la tete.
+
+5. sui renvoie le suivant.
+
+6. freel libère la mémoire.
+
+7. change1 change la valeur d’une case dans la grille.
+
+Gestion des composantes connexes : 
+8. La gestion de la composante connexe ce fait en deux instances au niveaux d’une liste et de chaque case.
 Chaque case sait si elle appartient à la composante.
 A chaque instant la fonction composante met a jour la liste des case appartenant a la composante et met a jour ces dernière.
 
-changeall applique change1 a chaque case de la liste.
+9. changeall applique change1 a chaque case de la liste.
 
-win regarde si toute le case sont dans la composante.
-
+10. win regarde si toute le case sont dans la composante.
 
 A chaque itération :
 -on demande une couleur
