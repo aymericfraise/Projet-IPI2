@@ -1,0 +1,73 @@
+          Rapport
+
+1.on définit une structure Case qui est composée d’une variable couleur et une variable dedant.
+struct Case{
+   char couleur;
+   int dedans;
+};
+
+2.la grille est composée de cases,on écrit une fonction qui s’appelle Grille(int taille)pour créer une grille de taille carrée,dans cette fonction,on utilise la fonction malloc pour obtenir un espace continu.
+grille Grille(int taille)
+{
+        grille ret=NULL;
+        ret=malloc(taille*taille*sizeof(Case));	
+        return ret;
+}
+
+3.pour libérer l’espace mémoire occupé par une grille,on a écrit une fonction qui s’appelle Liberation(grille a) en utilisant la fonction free();
+void Liberation(grille a)
+{
+    if(a!=NULL)
+  {
+    free(a);
+    a=NULL;
+  }
+}
+4.pour avoir une couleur aléatoire,on utilise la fonction random() pour créer la couleur aléatoire
+char constructeur()
+{
+    /*srand((unsigned)time(NULL));*/
+    int i=random()%6+1;     
+    char couleur;
+    switch(i)
+   {
+     case 1:couleur='B';break;
+     case 2:couleur='V';break;
+     case 3:couleur='R';break;
+     case 4:couleur='J';break;
+     case 5:couleur='M';break;
+     case 6:couleur='G';break;
+     default:break;
+   }
+    return couleur;
+}
+5.on écrit une fonction qui s’appelle get_couleur(grille g) pour obtenir la couleur d’une case
+char get_couleur(grille g) {
+	return (g->couleur);
+}
+6.on écrit une fonction qui s’appelle get_dedant(grille g)pour obtenir la valeur dedant d’une case
+int get_dedant(grille g) {
+	return (g->dedant);
+}
+7.on écrit une fonction qui s’appelle augemente_pointeur(grille g)pour augmenter la valeur de pointeur g. 
+8.pour initialiser la grille à partir de valeurs aléatoires,on utilise la fonction ci-dessous.
+void init_grille(grille a,int taille)
+{
+     int i=0;
+     for(i=0;i<taille*taille;i++)
+     {
+         a->couleur=constructeur();
+         a=augemente_pointeur(a);
+     }
+}
+9.pour initialiser la grille à partir de valeurs contenues dans un fichier ,on écrit une fonction 
+void init_grille_fichier(grille a,FILE *fp,int taille)
+{
+     int i=0;
+     for(i=0;i<taille*taille;i++)
+     {
+         a[i].couleur=fgetc(fp);
+     }
+     fclose(fp); 
+}
+
