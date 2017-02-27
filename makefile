@@ -14,13 +14,13 @@ tests.o:grille.h tests.c couleur.h
 	$(CC) $(CFLAGS) -c tests.c
 
 tests_unitaires.o: tests_unitaires.c grille.h couleur.h
-	$(CC) $(CFLAGS) -c tests_unitaires.c
+	$(CC) $(CFLAGS) -c tests_unitaires.c -lcunit
 
 prog:tests.o grille.o couleur.o
 	$(CC) $(CFLAGS) $^ -o $@
 
 tests_unitaires: tests_unitaires.o grille.o couleur.o
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $^ -o $@ -lcunit
 
 
 clean:
