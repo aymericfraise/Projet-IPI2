@@ -1,33 +1,26 @@
 #include <stdio.h>
 #include "grille.h"
 #include "couleur.h"
+#include "minunit.h"
 
-#define mu_assert(message, test) do { if (!(test)) return message; } while (0)
-
-#define mu_run_test(test) do { char *message = test(); tests_run++; \
-                                if (message) return message; } while (0)
-int tests_run = 0;
-
-
-static char * tests_grille(){
+MU_TEST(tests_grille){
   grille g = Grille(5);
   init_grille(g,5);
   /*test de get_dedans*/
-  /*mu_assert("erreur get_dedans", get_dedans(g)==1);*/
+  /*mu_check("erreur get_dedans", get_dedans(g)==1);*/
   /*test de change1*/
   change1(g,5,'R');
-  mu_assert("erreur change1",get_couleur(aug_g(g,5))=='R');
+  mu_check(get_couleur(aug_g(g,5))=='R');
   change1(g,5,'G');
-  mu_assert("erreur change1", get_couleur(aug_g(g,5))=='G');
+  mu_check(get_couleur(aug_g(g,5))=='G');
   /*test de change_dedans*/
   change_dedans(g,5*5-1,1);
-  mu_assert( "erreur change_dedans",get_dedans(aug_g(g,5*5-1))==1);
+  mu_check(get_dedans(aug_g(g,5*5-1))==1);
   change_dedans(g,5*5-1,0);
-  mu_assert( "erreur change_dedans",get_dedans(aug_g(g,5*5-1))==0);
-  return 0;
+  mu_check(get_dedans(aug_g(g,5*5-1))==0);
 }
 
-static char * test_init_fichier(){
+MU_TEST(test_init_fichier){
   FILE *file=fopen("fichiers_de_test/test_init_fichier.dat","w+");
   grille g = Grille(4);
   init_grille_fichier(g,file,4);
@@ -37,12 +30,11 @@ static char * test_init_fichier(){
   for(i=0;i<16;i++){
     if(get_couleur(aug_g(g,i))!='B') validation = 0;
   }
-  mu_assert("erreur init_fichier",validation);
-  return 0;
+  mu_check(validation);
 }
 
 
-static char * test_changeall(){
+MU_TEST(test_changeall){
   FILE *file=fopen("fichiers_de_test/test_changeall.dat","w+");
   grille g = Grille(4);
   init_grille_fichier(g,file,4);
@@ -55,11 +47,10 @@ static char * test_changeall(){
   for(i=0;i<16;i++){
     if(get_couleur(aug_g(g,i))!='R') validation = 0;
   }
-  mu_assert("erreur changeall",validation);
-  return 0;
+  mu_check(validation);
 }
 
-static char * test_win(){
+MU_TEST(test_win){
   FILE *fwin=fopen("fichiers_de_test/test_win","w+");
   FILE *flose=fopen("fichiers_de_test/test_lose","w+");
   grille gwin = Grille(4);
@@ -70,28 +61,19 @@ static char * test_win(){
   l = makel(0,l);
   composante(gwin,l,4);
   composante(glose,l,4);
-  mu_assert("erreur win",win(gwin,4)==1);
-  mu_assert("erreur lose",win(glose,4)==0);
-  return 0;
+  mu_check(win(gwin,4)==1);
+  mu_check(win(glose,4)==0);
 }
 
-static char * all_tests(){
-  mu_run_test(tests_grille);
-  mu_run_test(test_init_fichier);
-  mu_run_test(test_changeall);
-  mu_run_test(test_win);
-  return 0;
+MU_TEST_SUITE(test_suite){
+  MU_RUN_TEST(tests_grille);
+  MU_RUN_TEST(test_init_fichier);
+  MU_RUN_TEST(test_changeall);
+  MU_RUN_TEST(test_win);
 }
 
 int main(){
-  char *result = all_tests();
-  if (result != 0) {
-     printf("%s\n", result);
-  }
-  else {
-     printf("ALL TESTS PASSED\n");
-  }
-  printf("Tests run: %d\n", tests_run);
-
-  return result != 0;
+  MU_RUN_SUITE(test_suite);
+  MU_REPORT();
+  return 0;
 }

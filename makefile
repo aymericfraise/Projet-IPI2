@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-std=c11 -Wall -Wextra -g
 
-all: prog tests_unitaires2 tests_unitaires 
+all: prog tests_unitaires2 tests_unitaires
 
 
 grille.o:grille.c grille.h
@@ -16,8 +16,8 @@ tests.o:grille.h tests.c couleur.h
 tests_unitaires.o: tests_unitaires.c grille.h couleur.h
 	$(CC) $(CFLAGS) -c tests_unitaires.c -lcunit
 
-tests_unitaires2.o: tests_unitaires2.c grille.h couleur.h
-	$(CC) $(CFLAGS) -c tests_unitaires2.c -lcunit
+tests_unitaires2.o: tests_unitaires2.c grille.h couleur.h minunit.h
+	$(CC) $(CFLAGS) -c tests_unitaires2.c
 
 prog:tests.o grille.o couleur.o
 	$(CC) $(CFLAGS) $^ -o $@
