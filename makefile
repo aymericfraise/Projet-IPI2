@@ -22,5 +22,6 @@ prog:tests.o grille.o couleur.o
 tests_unitaires: tests_unitaires.o grille.o couleur.o
 	$(CC) $(CFLAGS) $^ -o $@
 
+
 clean:
-	rm tests.o grille.o couleur.o
+	rm tests.o grille.o couleur.o tests_unitaires.o

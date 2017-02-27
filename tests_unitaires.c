@@ -1,41 +1,42 @@
 #include <stdio.h>
-#include <CUnit/CUnit.h>
-#include <CUnit/Basic.h>
 #include "grille.h"
-#include "couleur.c"
+#include "couleur.h"
+
+#define mu_assert(message, test) do { if (!(test)) return message; } while (0)
+
+#define mu_run_test(test) do { char *message = test(); tests_run++; \
+                                if (message) return message; } while (0)
+int tests_run = 0;
 
 
-void tests_grille(){
+static char * tests_grille(){
   grille g = Grille(5);
   init_grille(g,5);
   /*test de get_dedans*/
-  CU_assert(get_dedans(g)==1);
+  /*mu_assert("erreur get_dedans", get_dedans(g)==1);*/
   /*test de change1*/
   change1(g,5,'R');
-  CU_assert(get_couleur(aug_g(g,5))=='R');
+  mu_assert("erreur change1",get_couleur(aug_g(g,5))=='R');
   change1(g,5,'G');
-  CU_assert(get_couleur(aug_g(g,5))=='G');
+  mu_assert("erreur change1", get_couleur(aug_g(g,5))=='G');
   /*test de change_dedans*/
   change_dedans(g,5*5-1,1);
-  CU_assert(get_dedans(aug_g(g,5*5-1))==1);
+  mu_assert( "erreur change_dedans",get_dedans(aug_g(g,5*5-1))==1);
   change_dedans(g,5*5-1,0);
-  CU_assert(get_dedans(aug_g(g,5*5-1))==0);
-}
-
-void tests_couleur(){
-  grille g = Grille(5);
-  init_grille(g, 5);
-
+  mu_assert( "erreur change_dedans",get_dedans(aug_g(g,5*5-1))==0);
+  return 0;
 }
 
 int main(){
-  CU_pSuite pSuite = NULL;
-  CU_initialize_registry();
-  pSuite = CU_add_suite("Suite",NULL,NULL);
-  CU_add_test(pSuite,"tests_grille",tests_grille);
-  CU_add_test(pSuite,"tests_couleur",tests_couleur);
-  CU_basic_set_mode(CU_BRM_VERBOSE);
-  CU_basic_run_tests();
-  CU_cleanup_registry();
-  return 0;
+  int tests_run=0;
+  char *result = tests_grille();
+  if (result != 0) {
+     printf("%s\n", result);
+  }
+  else {
+     printf("ALL TESTS PASSED\n");
+  }
+  printf("Tests run: %d\n", tests_run);
+
+  return result != 0;
 }
