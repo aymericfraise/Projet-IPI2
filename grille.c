@@ -208,8 +208,10 @@ void change_dedans(grille g,int taille,int dedans)
 void init_grille(grille a,int taille)
 {
     int i=0;
+    change_dedans(a,0,1);
     for(i=0;i<taille*taille;i++)
     {
+   
          a->couleur=constructeur();
          a=aug_g(a,1);
     }
@@ -259,6 +261,7 @@ void cree_fichier_de_couleur(int taille)
 void init_grille_fichier(grille a,FILE *fp,int taille)
 {
      int i=0;
+     change_dedans(a,0,1);
      for(i=0;i<taille*taille;i++)
      {
          a[i].couleur=fgetc(fp);
