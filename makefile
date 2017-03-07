@@ -8,11 +8,11 @@ grille.o:grille.c grille.h
 
 couleur.o:grille.h couleur.h couleur.c
 	$(CC) $(CFLAGS) -c couleur.c
-	
-test_unitaires.o:grille.h test_unitaires.c couleur.h
-	$(CC) $(CFLAGS) -c test_unitaires.c
 
-prog:test_unitaires.o grille.o couleur.o
+play.o:grille.h play.c couleur.h
+	$(CC) $(CFLAGS) -c play.c
+
+prog:play.o grille.o couleur.o
 	$(CC) $(CFLAGS) $^ -o $@
 
 clean:
