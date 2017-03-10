@@ -39,7 +39,11 @@ void fillScreen(SDL_Surface *ecran, int r, int g, int b) {
 }
 
 
-
+/**
+ \fn upi(char c,int i[])
+ \param couleur jouable a ajouter
+ \param tableau a metre a jour
+*/
 void upi(char c,int i[]){
   if (c=='B' ) {
     i[0]=1;
@@ -61,6 +65,13 @@ void upi(char c,int i[]){
   }
 }
 
+/**
+ \fn jouable(grille g,liste l,int i[6],int taille)
+ \param la grille de jeu
+ \param la liste de la composante
+ \param le tableau a metre a jour
+ \param la taille
+*/
 void jouable(grille g,liste l,int i[6],int taille){
    if (!listevide(l)) {
     int a=pop(l);
@@ -80,6 +91,10 @@ void jouable(grille g,liste l,int i[6],int taille){
   }
 }
 
+/**
+ \fn printjouable(int j[6])
+ \param le tableau des couleur jouables
+*/
 void printjouable(int j[6]){
   printf("Les couleurs jouables pour le prochain coup : ");
   if (j[0]) {
