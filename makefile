@@ -19,5 +19,18 @@ main.o : main.c grille.h couleur.h exSDL.h
 prog : main.o exSDL.o grille.o couleur.o
 	$(CC) $(CFLAGS)    $^ -o $@ -lSDL
 
+tests_unitaires.o: tests_unitaires.c grille.h couleur.h
+	$(CC) $(CFLAGS) -c tests_unitaires.c -lcunit
+
+tests_unitaires2.o: tests_unitaires2.c grille.h couleur.h minunit.h
+	$(CC) $(CFLAGS) -c tests_unitaires2.c
+
+
+tests_unitaires: tests_unitaires.o grille.o couleur.o
+	$(CC) $(CFLAGS) $^ -o $@ -lcunit
+
+tests_unitaires2: tests_unitaires2.o grille.o couleur.o
+	$(CC) $(CFLAGS) $^ -o $@
+
 clean:
 	rm tests.o grille.o couleur.o tests_unitaires.o tests_unitaires2.o
