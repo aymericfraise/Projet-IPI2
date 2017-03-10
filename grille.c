@@ -1,9 +1,3 @@
-/**
-    \file grille.c
-    \brief Permet d'allouer la memoire de taille*sizeof(case) pour grille g.
-    \author Min Li
-**/
-
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
@@ -11,9 +5,7 @@
 
 extern long int random(void);
 
-/**
-    \struct Case
-**/
+/*définition de la structure de la grille*/
 struct Case
 {
      char couleur;

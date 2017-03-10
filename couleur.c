@@ -1,16 +1,9 @@
-/**
-  \file [<couleur.c>]
-  \brief {contient les fonction de couleurs}
-  \author {Min,Yoann}
-**/
-
 #include<time.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include<stdio.h>
 #include"grille.h"
 #include"couleur.h"
-
 
 /*definition de la structure de liste d'entier*/
 struct t_liste {

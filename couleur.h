@@ -1,3 +1,8 @@
+/**
+  \file [<couleur.c>]
+  \brief {contient les fonction de couleurs}
+  \author {Min,Yoann}
+**/
 #include<time.h>
 #include <stdbool.h>
 
@@ -50,7 +55,6 @@ void freel(liste l);
   \return la liste de la composante
 **/
 liste composante(grille,liste,int);
-
 
 /**
   \fn void changeall(grille g,liste l,char couleur)

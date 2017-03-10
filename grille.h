@@ -1,9 +1,16 @@
+/**
+    \file grille.c
+    \brief Permet d'allouer la memoire de taille*sizeof(case) pour grille g.
+    \author Min Li
+**/
 #include<time.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
 
-/*définition de la structure de la grille*/
+/**
+    \struct Case
+**/
 typedef struct Case Case ,*grille;
 
 
