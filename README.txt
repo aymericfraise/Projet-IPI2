@@ -18,8 +18,10 @@ INSTRUCTIONS D'INSTALLATION :
 Récupérer tous les fichiers dans le fichier .zip
 Extraire le fichier, un dossier FloodColor sera créé
 Lancer un teminal, aller à la racine de ce dossier
-Tapez "make" 
+Tapez "make"
 Lancer le programme avec la commande "./prog".
+
+(A cause de problemes d'installation, nous n'avons pas réussi a faire fonctionner les tests unitaires a l'aide de CUnit. Le programme fourni tests_unitaires risque donc de ne pas fonctionner. C'est pourquoi nous fournissons le programme tests_unitaires2 qui est un essai en utilisant une autre manière. Si il y a des erreurs à la compilation, supprimez simplement "tests_unitaires" dans le make à la ligne commencant par "all:") 
 
 INSTRUCTION D'UTILISATION :
 Une fois le programme lancé, suivez les instructions données à l'écran précisément.

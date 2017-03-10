@@ -1,18 +1,21 @@
 CC=gcc
-CFLAGS=-std=c11 -Wall -Wextra -g 
+CFLAGS=-std=c11 -Wall -Wextra -g
 all:prog
 
 
 grille.o:grille.c grille.h
 	$(CC) $(CFLAGS) -c grille.c
 
-couleur.o:grille.h couleur.h couleur.c
+couleur.o:couleur.c grille.h couleur.h
 	$(CC) $(CFLAGS) -c couleur.c
 
-exSDL.o:grille.h  couleur.h 
-	$(CC) $(CFLAGS) -c  exSDL.c
+exSDL.o: exSDL.c exSDL.h
+		$(CC) $(CFLAGS) -c  exSDL.c
 
-prog:exSDL.o grille.o couleur.o 
+main.o : main.c grille.h couleur.h exSDL.h
+		$(CC) $(CFLAGS) -c  main.c
+
+prog : main.o exSDL.o grille.o couleur.o
 	$(CC) $(CFLAGS)    $^ -o $@ -lSDL
 
 clean:
