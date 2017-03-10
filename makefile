@@ -12,7 +12,7 @@ grille.o:grille.c grille.h
 couleur.o:couleur.c grille.h couleur.h
 	$(CC) $(CFLAGS) -c couleur.c
 
-exSDL.o: exSDL.c exSDL.h
+exSDL.o: exSDL.c exSDL.h grille.h couleur.h
 		$(CC) $(CFLAGS) -c  exSDL.c
 
 main.o : main.c grille.h couleur.h exSDL.h
