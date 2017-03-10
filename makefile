@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-std=c11 -Wall -Wextra -g
+CFLAGS=-std=c11 -Wall -Wextra -g 
 all:prog
 
 
@@ -9,11 +9,11 @@ grille.o:grille.c grille.h
 couleur.o:grille.h couleur.h couleur.c
 	$(CC) $(CFLAGS) -c couleur.c
 
-play.o:grille.h play.c couleur.h
-	$(CC) $(CFLAGS) -c play.c
+exSDL.o:grille.h  couleur.h 
+	$(CC) $(CFLAGS) -c  exSDL.c
 
-prog:play.o grille.o couleur.o
-	$(CC) $(CFLAGS) $^ -o $@
+prog:exSDL.o grille.o couleur.o 
+	$(CC) $(CFLAGS)    $^ -o $@ -lSDL
 
 clean:
 	rm test_unitaires.o grille.o couleur.o
