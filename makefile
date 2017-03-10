@@ -7,13 +7,17 @@ all: prog tests_unitaires2 tests_unitaires
 grille.o:grille.c grille.h
 	$(CC) $(CFLAGS) -c grille.c
 
-couleur.o:grille.h couleur.h couleur.c
+couleur.o:couleur.c grille.h couleur.h
 	$(CC) $(CFLAGS) -c couleur.c
 
-exSDL.o:grille.h  couleur.h 
-	$(CC) $(CFLAGS) -c  exSDL.c
-tests.o:grille.h tests.c couleur.h
-	$(CC) $(CFLAGS) -c tests.c
+exSDL.o: exSDL.c exSDL.h
+		$(CC) $(CFLAGS) -c  exSDL.c
+
+main.o : main.c grille.h couleur.h exSDL.h
+		$(CC) $(CFLAGS) -c  main.c
+
+prog : main.o exSDL.o grille.o couleur.o
+	$(CC) $(CFLAGS)    $^ -o $@ -lSDL
 
 tests_unitaires.o: tests_unitaires.c grille.h couleur.h
 	$(CC) $(CFLAGS) -c tests_unitaires.c -lcunit
@@ -21,9 +25,6 @@ tests_unitaires.o: tests_unitaires.c grille.h couleur.h
 tests_unitaires2.o: tests_unitaires2.c grille.h couleur.h minunit.h
 	$(CC) $(CFLAGS) -c tests_unitaires2.c
 
-
-prog:exSDL.o grille.o couleur.o 
-	$(CC) $(CFLAGS)    $^ -o $@ -lSDL
 
 tests_unitaires: tests_unitaires.o grille.o couleur.o
 	$(CC) $(CFLAGS) $^ -o $@ -lcunit

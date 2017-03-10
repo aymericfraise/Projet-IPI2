@@ -3,8 +3,6 @@
 #include "grille.h"
 #include "couleur.h"
 
-
-
 void grille_couleur_init_aleatoire(grille g, int taille){
     int i;  
     init_grille(g,taille);
@@ -33,18 +31,18 @@ void grille_couleur_init_fichier(grille g, FILE* fp, int taille){
     }    
 }
 
-
 int main()
 {
-        
-    
     /*Initialisation de la variable random pour la détermination de la grille*/
     srand(time(NULL));
-   /*Ouverture du fichier de la grille de test*/
+
+    /*Déclaration des variables*/
+    int taille;
+
+    /*Ouverture du fichier de la grille de test*/
     FILE* fp=fopen("couleur.dat","r");
-  /*Déclaration des variables*/
-      int taille;
-   /*Initialisation de la taille de la grille*/
+
+    /*Initialisation de la taille de la grille*/
     printf("Donnez la taille de grille :");
     scanf("%d",&taille);
     grille g = Grille(taille);
@@ -55,11 +53,13 @@ int main()
     
     /*Test de la creation de la grille a partir de la fonction*/
     grille_couleur_init_fichier(g, fp, taille);
+
+    
     grille h=Grille(taille);
     init_grille(h,taille);
     /*on change chaque case de h une par une pour la metre en rouge*/
      int i;
-    for (i = 0; i < taille*taille; i++) { 
+    for (i = 0; i < taille*taille; i++) {
       change1(h,i,'R');
     }
     printf("\n" );
@@ -69,30 +69,23 @@ int main()
           printf("\n");
     }
     liste k=NULL;
-    
     k=makel(0,k);
-	liste temps=NULL;
     k=composante(h,k,taille);
-     while (!(listevide(k))) {
-      printf("%d ",pop(k));
-	temps=k;
-      k=sui(k);
-	free(temps);
-    }
-
+    
     /*la liste est initialisée a 0*/
     liste l=NULL;
     l=makel(0,l);
     
     /*on recupere la composante connexe*/
-    l=composante(g,l,taille); 	 	
-    k=l;
-      while (!(listevide(l))) {
-      printf("%d ",pop(l));
-      l=sui(l);
+    l=composante(g,l,taille);
+    
+    /*on affiche la liste et la grille pour verifier*/
+    k=composante(g,l,taille);
+    while (!(listevide(k))) {
+      printf("%d ",pop(k));
+      k=sui(k);
     }
-     
-     printf("\n" );
+    printf("\n" );
      for ( i = 0; i < taille*taille; i++) {
       printf("%c ",get_couleur(aug_g(g,i)));
       if(i%taille==taille-1)
@@ -101,7 +94,7 @@ int main()
     printf("\n" );
     
     /*on utilise changeall et verifie le resultat*/
-    changeall(g,k,'M');
+    changeall(g,l,'M');
     for ( i = 0; i < taille*taille; i++) {
       printf("%c ",get_couleur(aug_g(g,i)));
       if(i%taille==taille-1)
@@ -115,9 +108,6 @@ int main()
       if(i%taille==taille-1)
           printf("\n");
     }
-
-     
-
     
     /*on teste win sur h et g*/
     printf("victoire sur g %d\n",win(g,taille) );
@@ -128,10 +118,6 @@ int main()
     liberation(h);
     freel(l);
     freel(k);
-
-
-    
-   
 
     return 0;
 }
