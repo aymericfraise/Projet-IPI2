@@ -1,5 +1,5 @@
 VERSION :
-1.0.A
+1.0.B
 
 AUTEURS	: MYAJ Corps.
 Min "Iimum" Li
