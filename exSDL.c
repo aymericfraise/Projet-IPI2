@@ -9,15 +9,6 @@
 
 int autoDraw=0;
 
-// px, py coordonnées haut, gauche de la texture
-void drawTexture(SDL_Surface *ecran, int px, int py, SDL_Surface *ima) {
-	SDL_Rect rect;
-    rect.x=px;
-    rect.y=py;
-	SDL_BlitSurface(ima, NULL, ecran, &rect);
-	SDL_Flip(ecran);
-}
-
 // px, py coordonnées haut, gauche du pixel
 void drawRectangle(SDL_Surface *ecran, int px, int py, int size, int r, int g, int b) {
     SDL_Rect rect;
@@ -28,22 +19,12 @@ void drawRectangle(SDL_Surface *ecran, int px, int py, int size, int r, int g, i
     SDL_Flip(ecran);
 }
 
-// px, py coordonnées haut, gauche du pixel
-void drawPixel(SDL_Surface *ecran, int px, int py, int r, int g, int b) {
-    drawRectangle(ecran,  px,  py, 1,  r,  g,  b);
-}
 
 void fillScreen(SDL_Surface *ecran, int r, int g, int b) {
     SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, r, g, b));
     SDL_Flip(ecran);
 }
 
-
-/**
- \fn upi(char c,int i[])
- \param couleur jouable a ajouter
- \param tableau a metre a jour
-*/
 void upi(char c,int i[]){
   if (c=='B' ) {
     i[0]=1;
@@ -65,13 +46,6 @@ void upi(char c,int i[]){
   }
 }
 
-/**
- \fn jouable(grille g,liste l,int i[6],int taille)
- \param la grille de jeu
- \param la liste de la composante
- \param le tableau a metre a jour
- \param la taille
-*/
 void jouable(grille g,liste l,int i[6],int taille){
    if (!listevide(l)) {
     int a=pop(l);
@@ -91,10 +65,7 @@ void jouable(grille g,liste l,int i[6],int taille){
   }
 }
 
-/**
- \fn printjouable(int j[6])
- \param le tableau des couleur jouables
-*/
+
 void printjouable(int j[6]){
   printf("Les couleurs jouables pour le prochain coup : ");
   if (j[0]) {

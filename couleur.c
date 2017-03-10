@@ -1,6 +1,6 @@
 #include<time.h>
-#include <stdbool.h>
-#include <stdlib.h>
+#include<stdbool.h>
+#include<stdlib.h>
 #include<stdio.h>
 #include"grille.h"
 #include"couleur.h"
@@ -22,7 +22,6 @@ liste makel(int d,liste l){
   c->suivant =l;
   return c;
 }
-
 
 /*renvoie la queue de la liste*/
 liste sui(liste l){

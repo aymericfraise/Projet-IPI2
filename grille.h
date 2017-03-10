@@ -4,9 +4,9 @@
     \author Min Li
 **/
 #include<time.h>
-#include <stdbool.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include<stdbool.h>
+#include<stdlib.h>
+#include<stdio.h>
 
 /**
     \struct Case
