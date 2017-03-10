@@ -1,6 +1,7 @@
 CC=gcc
-CFLAGS=-std=c11 -Wall -Wextra -g
-all:prog
+CFLAGS=-std=gnu89 -Wall -Wextra -g
+
+all: prog tests_unitaires2 tests_unitaires
 
 
 grille.o:grille.c grille.h
@@ -19,4 +20,4 @@ prog : main.o exSDL.o grille.o couleur.o
 	$(CC) $(CFLAGS)    $^ -o $@ -lSDL
 
 clean:
-	rm test_unitaires.o grille.o couleur.o
+	rm tests.o grille.o couleur.o tests_unitaires.o tests_unitaires2.o
