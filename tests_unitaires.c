@@ -9,17 +9,17 @@ void tests_grille(){
   grille g = Grille(5);
   init_grille(g,5);
   /*test de get_dedans*/
-  CU_assert(get_dedans(g)==1);
+  CU_ASSERT(get_dedans(g)==1);
   /*test de change1*/
   change1(g,5,'R');
-  CU_assert(get_couleur(aug_g(g,5))=='R');
+  CU_ASSERT(get_couleur(aug_g(g,5))=='R');
   change1(g,5,'G');
-  CU_assert(get_couleur(aug_g(g,5))=='G');
+  CU_ASSERT(get_couleur(aug_g(g,5))=='G');
   /*test de change_dedans*/
   change_dedans(g,5*5-1,1);
-  CU_assert(get_dedans(aug_g(g,5*5-1))==1);
+  CU_ASSERT(get_dedans(aug_g(g,5*5-1))==1);
   change_dedans(g,5*5-1,0);
-  CU_assert(get_dedans(aug_g(g,5*5-1))==0);
+  CU_ASSERT(get_dedans(aug_g(g,5*5-1))==0);
 }
 
 void test_init_fichier(){
@@ -32,7 +32,7 @@ void test_init_fichier(){
   for(i=0;i<16;i++){
     if(get_couleur(aug_g(g,i))!='B') validation = 0;
   }
-  CU_assert(validation);
+  CU_ASSERT(validation);
 }
 
 
@@ -49,7 +49,7 @@ void test_changeall(){
   for(i=0;i<16;i++){
     if(get_couleur(aug_g(g,i))!='R') validation = 0;
   }
-  CU_assert(validation);
+  CU_ASSERT(validation);
 }
 
 void test_win(){
@@ -63,8 +63,8 @@ void test_win(){
   l = makel(0,l);
   composante(gwin,l,4);
   composante(glose,l,4);
-  CU_assert(win(gwin,4)==1);
-  CU_assert(win(glose,4)==0);
+  CU_ASSERT(win(gwin,4)==1);
+  CU_ASSERT(win(glose,4)==0);
 }
 
 int main(){
