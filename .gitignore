@@ -1,2 +1,13 @@
-# Ignoer les fichiers qu'on va transformer en pdf
+# Ignorer les fichiers qu'on va transformer en pdf
 *.odt
+
+# Ignore les fichiers objets
+*.o
+
+# Ignore les executables
+prog
+tests_unitaires
+tests_unitaires2
+
+# Ignore la doc
+doc/
