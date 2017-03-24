@@ -23,7 +23,7 @@ void tests_grille(){
 }
 
 void test_init_fichier(){
-  FILE *file=fopen("fichiers_de_test/test_init_fichier.dat","w+");
+  FILE *file=fopen("fichiers_de_test/test_init_fichier.dat","r");
   grille g = Grille(4);
   init_grille_fichier(g,file,4);
   int validation = 1;
@@ -37,7 +37,7 @@ void test_init_fichier(){
 
 
 void test_changeall(){
-  FILE *file=fopen("fichiers_de_test/test_changeall.dat","w+");
+  FILE *file=fopen("fichiers_de_test/test_changeall.dat","r");
   grille g = Grille(4);
   init_grille_fichier(g,file,4);
   liste comp_connexe = NULL;
@@ -47,14 +47,15 @@ void test_changeall(){
   int validation=1;
   int i;
   for(i=0;i<16;i++){
-    if(get_couleur(aug_g(g,i))!='R') validation = 0;
+    if(get_couleur(g)!='R') validation = 0;
+    aug_g(g,i);
   }
   CU_ASSERT(validation);
 }
 
 void test_win(){
-  FILE *fwin=fopen("fichiers_de_test/test_win","w+");
-  FILE *flose=fopen("fichiers_de_test/test_lose","w+");
+  FILE *fwin=fopen("fichiers_de_test/test_win.dat","r");
+  FILE *flose=fopen("fichiers_de_test/test_lose.dat","r");
   grille gwin = Grille(4);
   grille glose = Grille(4);
   init_grille_fichier(gwin,fwin,4);

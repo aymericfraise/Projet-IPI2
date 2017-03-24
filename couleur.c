@@ -84,7 +84,7 @@ liste composante(grille g,liste l,int taille){
   return ret;
 }
 
-/*donne au case de laliste l dans la grille g la valeur c*/
+/*donne à la case de la liste l dans la grille g la valeur couleur*/
 void changeall(grille g,liste l,char couleur) {
   if (l!=NULL) {
     change1(g,l->position,couleur);
