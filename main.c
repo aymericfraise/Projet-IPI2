@@ -2,6 +2,7 @@
 #include "grille.h"
 #include "couleur.h"
 #include "exSDL.h"
+#include "naif.h"
 
 void clear(){
     #if defined(__linux__) || defined(__unix__) || defined(__APPLE__)
@@ -51,6 +52,11 @@ int main(int argc, char *argv[]) {
     affiche_SDL(g,taille,ecran);
     l=makel(0,l);
     l=composante(g,l,taille);
+
+    int max=(taille*taille);
+    int	* mmax=&max;
+		char gg[taille*taille+1];
+		oui(g,taille,mmax,0,gg);
     /*input du nombre de coups*/
     printf("Donnez le nombre de coup : " );
     scanf("%d",&coup );

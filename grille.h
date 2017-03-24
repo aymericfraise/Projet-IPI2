@@ -51,15 +51,10 @@ void init_grille(grille ,int);
     \return la valeur de dedans
     \brief Permet d'obtenir le dedans de la case pointé par le pointeur g
 **/
-char get_couleur(grille g);
+char get_couleur(grille g,int i);
 
-/**
-    \fn aug_g(grille g,int distance)
-    \param grille g,int distance
-    \return le pointeur
-    \brief Permet d'augmenter la valeur de pointeur
-**/
-int get_dedans(grille g);
+
+int get_dedans(grille g,int i);
 
 /**
     \fn change1(grille g,int taille,char couleur)
@@ -67,7 +62,7 @@ int get_dedans(grille g);
     \return rien
     \brief Permet de changer la couleur d'indice taille
 **/
-grille aug_g(grille g,int distance);
+
 
 /**
     \fn change_dedans(grille g,int taille,int dedans)
