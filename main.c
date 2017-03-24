@@ -139,7 +139,7 @@ int main(int argc, char *argv[]) {
   fillScreen(ecran, 255,255,255);
   grille g=Grille(taille);
     init_grille(g,taille);
-    affiche_SDL(g,taille,ecran);
+    affiche_SDL(g,taille,ecran,sz_rect);
     l=makel(0,l);
     l=composante(g,l,taille);
 
