@@ -14,6 +14,7 @@ void clear(){
 }
 
 int main(int argc, char *argv[]) {
+  srand((unsigned)time(NULL));
   /*int continuer = 1;*/
 	SDL_Surface *ecran = NULL;
   /* SDL_Event event;*/
@@ -76,9 +77,11 @@ int main(int argc, char *argv[]) {
 	     /*scanf("%c",&couleur);*/
 
 	    /*couleur=getc(stdin);*/
-	     if(!((couleur=='B' && j[0]) || (couleur=='V' && j[1]) || (couleur=='R' && j[2]) || (couleur=='J' && j[3]) || (couleur=='M' && j[4]) || (couleur=='G' && j[5])))
+      if(!((couleur=='B' && j[0]) || (couleur=='V' && j[1]) || (couleur=='R' && j[2]) || (couleur=='J' && j[3]) || (couleur=='M' && j[4]) || (couleur=='G' && j[5])))
 	     {
-		       printf("La couleur que cous avez donné n'est pas jouable.\n");
+		      printf("La couleur que cous avez donné n'est pas jouable.\n");
+          if(couleur=='Q')
+            ww=-1;
 	     }
 	     else
 	     {
@@ -92,12 +95,11 @@ int main(int argc, char *argv[]) {
     clear();
 	  affiche_SDL(g,taille,ecran);
     printf("Nombre de coup restant : %d\n",coup );
-	  if (ww) {
-	     printf("Victoire\n" );
-	  } else {
-	     printf("Defaite\n");
-	  }
-
+    switch(ww){
+        case -1: printf("Vous avez quitter en cours de jeu.\n"); break;
+        case 0:  printf("Defaite.\n"); break;
+        case 1:  printf("Victoire.\n"); break;
+    }
     getc(stdin);
     getc(stdin);
     SDL_Quit();

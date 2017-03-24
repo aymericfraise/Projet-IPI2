@@ -29,7 +29,7 @@ void liberation(grille a)
 
 char constructeur()
 {
-    int i=random()%6+1;
+    int i=rand()%6+1;
     char couleur;
     switch(i){
         case 1:couleur='B';break;
