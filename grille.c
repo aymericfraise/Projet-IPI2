@@ -44,30 +44,24 @@ char constructeur()
 }
 
 
-char get_couleur(grille g) {
-    return (g->couleur);
+char get_couleur(grille g,int i) {
+    return (g[i].couleur);
 }
 
-int get_dedans(grille g) {
-    return (g->dedans);
+int get_dedans(grille g,int i) {
+    return (g[i].dedans);
 }
 
-grille aug_g(grille g,int distance)
+
+
+void change1(grille g,int i,char couleur)
 {
-    g=g+distance;
-    return (g);
+       g[i].couleur=couleur;
 }
 
-void change1(grille g,int taille,char couleur)
+void change_dedans(grille g,int i,int dedans)
 {
-       g=aug_g(g,taille);
-       g->couleur=couleur;
-}
-
-void change_dedans(grille g,int taille,int dedans)
-{
-      g=aug_g(g,taille);
-      g->dedans=dedans;
+      g[i].dedans=dedans;
 }
 
 void init_grille(grille a,int taille)
@@ -77,8 +71,7 @@ void init_grille(grille a,int taille)
     for(i=0;i<taille*taille;i++)
     {
 
-         a->couleur=constructeur();
-         a=aug_g(a,1);
+         a[i].couleur=constructeur();
     }
 }
 

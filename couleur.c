@@ -41,11 +41,6 @@ void freel(liste l){
   }
 }
 
-/*void change1(grille g,int i,char couleur){
-  g=aug_g(g,i);
-  g->couleur=couleur;
-}*/
-
 /*donne a la case i de la grille g la valeur c*/
 /*void change1(grille g,int i,char c);*/
 /*renvoie la liste des position des cases appartenant a la composante connexe*/
@@ -59,22 +54,22 @@ liste composante(grille g,liste l,int taille){
     l=sui(l);
     free(temps);
     ret=makel(i,ret);
-    if (i%taille!=0 && !(get_dedans(aug_g(g,i-1))) &&  get_couleur(aug_g(g,i))==get_couleur(aug_g(g,i-1))){
+    if (i%taille!=0 && !(get_dedans(g,i-1)) &&  get_couleur(g,i)==get_couleur(g,i-1)){
       change_dedans(g,i-1,1);
       l=makel(i-1,l);
      /* printf("%d ",i-1);*/
     }
-    if (i%taille!=taille-1 && !(get_dedans(aug_g(g,i+1))) && get_couleur(aug_g(g,i))==get_couleur(aug_g(g,i+1))) {
+    if (i%taille!=taille-1 && !(get_dedans(g,i+1)) && get_couleur(g,i)==get_couleur(g,i+1)) {
       change_dedans(g,i+1,1);
       l=makel(i+1,l);
       /*printf("%d",i+1);*/
     }
-    if (i/taille!=0 && !(get_dedans(aug_g(g,i-taille))) && get_couleur(aug_g(g,i))==get_couleur(aug_g(g,i-taille))) {
+    if (i/taille!=0 && !(get_dedans(g,i-taille)) && get_couleur(g,i)==get_couleur(g,i-taille)) {
       change_dedans(g,i-taille,1);
       l=makel(i-taille,l);
       /*printf("%d",i-taille);*/
     }
-    if (i/taille!=taille-1 && !(get_dedans(aug_g(g,i+taille))) && get_couleur(aug_g(g,i))==get_couleur(aug_g(g,i+taille))) {
+    if (i/taille!=taille-1 && !(get_dedans(g,i+taille)) && get_couleur(g,i)==get_couleur(g,i+taille)) {
       change_dedans(g,i+taille,1);
       l=makel(i+taille,l);
      /* printf("%d",i+taille);*/
@@ -97,7 +92,7 @@ int win(grille g,int taille){
   int i;
   for (i = 0;i < taille*taille; i++)
   {
-     if(get_dedans(aug_g(g,i)) ==0)
+     if(get_dedans(g,i) ==0)
       return 0;
    }
    return 1;
