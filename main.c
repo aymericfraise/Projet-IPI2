@@ -135,9 +135,11 @@ int main(int argc, char *argv[]) {
 
   /*ima = SDL_LoadBMP("./cerise.bmp");*/
 	/* fillScreen(ecran, 0,0,0);*/
+  ima = SDL_LoadBMP("./cerise.bmp");
+  fillScreen(ecran, 255,255,255);
   grille g=Grille(taille);
     init_grille(g,taille);
-    affiche_SDL(g,taille,ecran);
+    affiche_SDL(g,taille,ecran,sz_rect);
     l=makel(0,l);
     l=composante(g,l,taille);
 
@@ -150,21 +152,9 @@ int main(int argc, char *argv[]) {
     scanf("%d",&coup );
     printf("************************\n");
     ww =win(g,taille);
-    for ( i = 0; i < 6; i++)
-	  {
-	    j[i]=0;
-	  }
-        ima = SDL_LoadBMP("./cerise.bmp");
-        fillScreen(ecran, 255,255,255);
-        grille g=Grille(taille);
-        init_grille(g,taille);
-        affiche_SDL(g,taille,ecran,sz_rect);
-        l=makel(0,l);
-        l=composante(g,l,taille);
-        printf("Donnez le nombre de coup : " );
-        scanf("%d",&coup );
-        printf("************************\n");
-        ww =win(g,taille);
+    
+
+
 
     while (!ww && coup>0) {
                  for ( i = 0; i < 6; i++)

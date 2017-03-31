@@ -5,6 +5,17 @@
  \param int size représente que le rectangle est composé de combien de pixel
  \param int r,int g,int b:ce sont les valeurs e RGB de couleur
 */
+
+
+
+/*const SDL_Color RGB_Black  = { 0, 0, 0 };  
+const SDL_Color RGB_BLEU   = { 0, 0, 255 }; 
+const SDL_Color RGB_VERT   = { 0, 100, 0 };  
+const SDL_Color RGB_ROUGE  = {255, 0, 0 };   
+const SDL_Color RGB_JAUNE  = {255, 185, 15 };  
+const SDL_Color RGB_MARRON = {139, 69, 19 };  
+const SDL_Color RGB_GRIS   = {139, 87, 66 };*/
+
 void drawRectangle(SDL_Surface *ecran, int px, int py, int size, int r, int g, int b);
 /**
 \fn void fillScreen(SDL_Surface *ecran, int r, int g, int b)
@@ -39,5 +50,6 @@ void printjouable(int j[]);
   \param grille g représente la grille
   \param int taille représente la taille de grille
   \param SDL_Surface *ecran représente l'écran
+  \param int sz_rect représente ma taille de rectangle
 */
-void affiche_SDL(grille g,int taille,SDL_Surface *ecran/*,int coup*/);
+void affiche_SDL(grille g,int taille,SDL_Surface *ecran,int sz_rect);
