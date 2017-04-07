@@ -89,20 +89,20 @@ void printjouable(int j[6]){
  printf("\n");
 }
 
-void affiche_SDL(grille g,int taille,SDL_Surface *ecran/*,int coup*/) {
+void affiche_SDL(grille g,int taille,SDL_Surface *ecran,int sz_rect)
+{
    int i,ligne,colonne;
    char couleur;
    for(i=0;i<taille*taille;i++)
          {
              couleur=get_couleur(g,i);
              switch (couleur) {
-             case 'B':{ligne=i/taille;colonne=i%taille;drawRectangle(ecran, ligne*50, colonne*50, 50, 0, 0, 255);break;}
-             case 'V':{ligne=i/taille;colonne=i%taille;drawRectangle(ecran, ligne*50, colonne*50, 50, 0, 100, 0);break;}
-             case 'R':{ligne=i/taille;colonne=i%taille;drawRectangle(ecran, ligne*50, colonne*50, 50, 255, 0, 0);break;}
-             case 'J':{ligne=i/taille;colonne=i%taille;drawRectangle(ecran, ligne*50, colonne*50, 50, 255, 185,15);break;}
-             case 'M':{ligne=i/taille;colonne=i%taille;drawRectangle(ecran, ligne*50, colonne*50, 50, 139, 69, 19);break;}
-             case 'G':{ligne=i/taille;colonne=i%taille;drawRectangle(ecran, ligne*50, colonne*50, 50, 139, 87, 66);break;}
+             case 'B':{ligne=i/taille;colonne=i%taille;drawRectangle(ecran, ligne*sz_rect, colonne*sz_rect, sz_rect, 0, 0, 255);break;}
+             case 'V':{ligne=i/taille;colonne=i%taille;drawRectangle(ecran, ligne*sz_rect, colonne*sz_rect, sz_rect, 0, 100, 0);break;}
+             case 'R':{ligne=i/taille;colonne=i%taille;drawRectangle(ecran, ligne*sz_rect, colonne*sz_rect, sz_rect, 255, 0, 0);break;}
+             case 'J':{ligne=i/taille;colonne=i%taille;drawRectangle(ecran, ligne*sz_rect, colonne*sz_rect, sz_rect, 255, 185,15);break;}
+             case 'M':{ligne=i/taille;colonne=i%taille;drawRectangle(ecran, ligne*sz_rect, colonne*sz_rect, sz_rect, 139, 69, 19);break;}
+             case 'G':{ligne=i/taille;colonne=i%taille;drawRectangle(ecran, ligne*sz_rect, colonne*sz_rect, sz_rect, 139, 87, 66);break;}
              }
           }
-    /*printf("nombre de coup restant:%d\n",coup );*/
 }
