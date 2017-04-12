@@ -1,6 +1,3 @@
-# Ignorer les fichiers qu'on va transformer en pdf
-*.odt
-
 # Ignore les fichiers objets
 *.o
 

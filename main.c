@@ -133,27 +133,20 @@ int main(int argc, char *argv[]) {
   }
 	ecran=SDL_SetVideoMode(width, height, 32, SDL_HWSURFACE);
 	SDL_WM_SetCaption("COLOR FLOOD DE MYAJ", NULL);
+	  ima = SDL_LoadBMP("./cerise.bmp");
+	  fillScreen(ecran, 255,255,255);
+	  grille g=Grille(taille);
+	    init_grille(g,taille);
+	    affiche_SDL(g,taille,ecran,sz_rect);
+	    l=makel(0,l);
+	    l=composante(g,l,taille);
 
-
-  /*ima = SDL_LoadBMP("./cerise.bmp");*/
-	/* fillScreen(ecran, 0,0,0);*/
-  ima = SDL_LoadBMP("./cerise.bmp");
-  fillScreen(ecran, 255,255,255);
-  grille g=Grille(taille);
-    init_grille(g,taille);
-    affiche_SDL(g,taille,ecran);
-    l=makel(0,l);
-    l=composante(g,l,taille);
-
-    int max=(taille*taille);
-    int	* mmax=&max;
-		char gg[taille*taille+1];
-		oui(g,taille,mmax,0,gg);
-    /*input du nombre de coups*/
-    printf("Donnez le nombre de coup : " );
-    scanf("%d",&coup );
-    printf("************************\n");
-    ww =win(g,taille);
+	    int max=(taille*taille);
+	    int	* mmax=&max;
+			char gg[taille*taille+1];
+	     coup=oui(g,taille,mmax,0,gg);
+	    printf("Donnez le nombre de coup :%d ",coup );
+	    ww =win(g,taille);
     
 
 

@@ -9,7 +9,6 @@
 
 int autoDraw=0;
 
-
 // px, py coordonnées haut, gauche du pixel
 void drawRectangle(SDL_Surface *ecran, int px, int py, int size, int r, int g, int b) {
     SDL_Rect rect;
@@ -50,17 +49,17 @@ void upi(char c,int i[]){
 void jouable(grille g,liste l,int i[6],int taille){
    if (!listevide(l)) {
     int a=pop(l);
-    if (a%taille!=0 && get_couleur(aug_g(g,a-1))!=get_couleur(aug_g(g,a))) {
-      upi(get_couleur(aug_g(g,a-1)),i);
+    if (a%taille!=0 && get_couleur(g,a-1)!=get_couleur(g,a)) {
+      upi(get_couleur(g,a-1),i);
     }
-    if (a%taille!=taille-1 && get_couleur(aug_g(g,a+1))!=get_couleur(aug_g(g,a))) {
-      upi(get_couleur(aug_g(g,a+1)),i);
+    if (a%taille!=taille-1 && get_couleur(g,a+1)!=get_couleur(g,a)) {
+      upi(get_couleur(g,a+1),i);
     }
-    if (a/taille!=0 && get_couleur(aug_g(g,a-taille))!=get_couleur(aug_g(g,a))) {
-      upi(get_couleur(aug_g(g,a-taille)),i);
+    if (a/taille!=0 && get_couleur(g,a-taille)!=get_couleur(g,a)) {
+      upi(get_couleur(g,a-taille),i);
     }
-    if (a/taille!=taille-1 && get_couleur(aug_g(g,a+taille))!=get_couleur(aug_g(g,a))) {
-      upi(get_couleur(aug_g(g,a+taille)),i);
+    if (a/taille!=taille-1 && get_couleur(g,a+taille)!=get_couleur(g,a)) {
+      upi(get_couleur(g,a+taille),i);
     }
      jouable(g,sui(l),i,taille);
   }
@@ -96,7 +95,7 @@ void affiche_SDL(grille g,int taille,SDL_Surface *ecran,int sz_rect)
    char couleur;
    for(i=0;i<taille*taille;i++)
          {
-             couleur=get_couleur(aug_g(g,i));
+             couleur=get_couleur(g,i);
              switch (couleur) {
              case 'B':{ligne=i/taille;colonne=i%taille;drawRectangle(ecran, ligne*sz_rect, colonne*sz_rect, sz_rect, 0, 0, 255);break;}
              case 'V':{ligne=i/taille;colonne=i%taille;drawRectangle(ecran, ligne*sz_rect, colonne*sz_rect, sz_rect, 0, 100, 0);break;}
@@ -107,10 +106,3 @@ void affiche_SDL(grille g,int taille,SDL_Surface *ecran,int sz_rect)
              }
           }
 }
-
-
-
-
-
-
-
