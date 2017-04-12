@@ -29,7 +29,7 @@ void liberation(grille a)
 
 char constructeur()
 {
-    int i=rand()%6+1;
+    int i=random()%6+1;
     char couleur;
     switch(i){
         case 1:couleur='B';break;
@@ -83,7 +83,6 @@ void cree_fichier_de_couleur(int taille)
     {
         fputc(constructeur(),fp);
     }
-    fclose(fp);
 }
 
 void init_grille_fichier(grille a,FILE *fp,int taille)
@@ -94,5 +93,4 @@ void init_grille_fichier(grille a,FILE *fp,int taille)
      {
          a[i].couleur=fgetc(fp);
      }
-     fclose(fp);
 }

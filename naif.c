@@ -9,7 +9,7 @@
 #include "exSDL.h"
 
 
-int oui(grille g,int taille,int* max,int it,char gg[]){
+void oui(grille g,int taille,int* max,int it,char gg[]){
   int j[6],i;
   char a='0';
 
@@ -69,5 +69,4 @@ int oui(grille g,int taille,int* max,int it,char gg[]){
 
   liberation(g1);
   freel(l);
-   return 20;
 }
