@@ -36,7 +36,7 @@ int set_sz_rect(int taille,int* width)
 Uint8* clik_change(SDL_Surface *ecran)
 {
    SDL_Event event;
-   int autoDraw=0;
+   /*int autoDraw=0;*/
    Uint8 *p;
    while(1)
     {
@@ -100,7 +100,7 @@ int  couleur_marche(int j[],char couleur){
 
 
 
-int main(int argc, char *argv[]) {
+int main(/*int argc, char *argv[]*/) {
 
   srand((unsigned)time(NULL));
 
@@ -110,12 +110,12 @@ int main(int argc, char *argv[]) {
   const SDL_VideoInfo* info = NULL;
 	SDL_Surface *ima=NULL;
 	char couleur;
-	int test;
+	/*int test;*/
 	int j[6],i;
 	int taille;
-	int ligne,colonne;
-        int sz_rect;
-        Uint8 *p;
+	/*int ligne,colonne;*/
+  int sz_rect;
+  Uint8 *p;
   liste l=NULL;
   int coup,ww;
   printf("**************************\n");
