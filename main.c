@@ -102,6 +102,8 @@ int  couleur_marche(int j[],char couleur){
 
 int main(int argc, char *argv[]) {
 
+  srand((unsigned)time(NULL));
+
   int width=500;
   int height=700;
 	SDL_Surface *ecran = NULL;
