@@ -31,7 +31,6 @@ void oui(grille g,int taille,int* max,int it,char gg[]){
     gg[it]='\0';
     printf("solution trouvee en %d coups : %s\n",it,gg );
     *max=it-1;
-    return it;
   }
   else if (it<*max) {
     jouable( g1, l,j, taille);

@@ -92,13 +92,14 @@ void test_oui(){
   int res;
   int max = 6;
   int it = 0;
-  char gg[4];
+  char gg[5];
   FILE *file=fopen("fichiers_de_test/test_oui.dat","r");
   grille g = Grille(5);
   init_grille_fichier(g, file,5);
   oui(g,5,&max,it,gg);
-  CU_ASSERT((max+1)==4 && gg[0]=='V' && gg[1]=='R' && gg[2]=='M' && gg[3]=='G');
-  printf("%s",gg);
+  printf("\"vrai\" solution : %s\n",gg);
+  CU_ASSERT((max+1)==5 && gg[0]=='G' && gg[1]=='M' && gg[2]=='R' && gg[3]=='V' && gg[4]=='G');
+
   fclose(file);
 }
 
