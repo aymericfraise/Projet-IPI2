@@ -89,7 +89,6 @@ void test_win(){
 /*Tests unitaires du solveur*/
 
 void test_oui(){
-  int res;
   int max = 6;
   int it = 0;
   char gg[5];

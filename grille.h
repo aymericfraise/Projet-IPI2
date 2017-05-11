@@ -45,15 +45,15 @@ char constructeur();
 **/
 void init_grille(grille ,int);
 
+
+char get_couleur(grille g,int i);
+
 /**
     \fn get_dedans(grille g)
     \param grille g
     \return la valeur de dedans
     \brief Permet d'obtenir le dedans de la case pointé par le pointeur g
 **/
-char get_couleur(grille g,int i);
-
-
 int get_dedans(grille g,int i);
 
 /**

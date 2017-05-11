@@ -15,8 +15,11 @@ NOTE DE VERSION :
 Il s'agit de la première version, qui ne comprend que les fonctions de base d'allocation de mémoire, de tests d'adjacence et de changement de couleur, ainsi que les conditions de victoires. Elle ne possède pas encore d'interface de jeu. Il y a seulement un rapport de tests unitaires lorsque le programme est lancé.
 
 INSTRUCTIONS D'INSTALLATION :
+Installer les deux bibliothèque:SDL et SDL_ttf
+sudo apt-get install libsdl1.2-dev libsdl-gfx1.2-dev libsdl-ttf2.0-dev libfreeimage-dev
 Récupérer tous les fichiers dans le fichier .zip
 Extraire le fichier, un dossier FloodColor sera créé
+
 Lancer un teminal, aller à la racine de ce dossier
 Tapez "make"
 Lancer le programme avec la commande "./prog".

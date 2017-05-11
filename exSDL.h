@@ -46,12 +46,24 @@ void jouable(grille g,liste l,int i[],int taille);
 */
 void printjouable(int j[]);
 /** 
-  \fn void affiche_SDL(grille g,int taille,SDL_Surface *ecran)
+  \fn affiche_SDL(grille g,int taille,SDL_Surface *ecran,int sz_rect,int coup,int mmax,int flag,int ww);
   \param grille g représente la grille
   \param int taille représente la taille de grille
   \param SDL_Surface *ecran représente l'écran
   \param int sz_rect représente ma taille de rectangle
+  \param int coup représente le coup restant
+  \param int mmax représente le coup autorisé au tout début
+  \param int flag représente si c'est la première fois qu'on lance le jeu
+  \param int ww représente si le joueur gagne ou pas
+  \brief Permet de réaliser tout les effet d'affichage pendant jouer
 */
 void affiche_SDL(grille g,int taille,SDL_Surface *ecran,int sz_rect,int coup,int mmax,int flag,int ww);
 
+
+/**
+    \fn saisir_taille(SDL_Surface *ecran)
+    \param SDL_Surface *ecran
+    \return la taille
+    \brief Permet de retourner la taille de grille que le joueur choisit et il peut réaliser les effetd de page d'acceuil
+**/
 int saisir_taille(SDL_Surface *ecran);

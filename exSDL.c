@@ -19,10 +19,6 @@ SDL_Color couleurGris = {139, 87, 66};
 
  
 
-
-
-
-// px, py coordonnées haut, gauche du pixel
 void drawRectangle(SDL_Surface *ecran, int px, int py, int size, int r, int g, int b) {
     SDL_Rect rect;
     rect.x=px;
@@ -37,6 +33,7 @@ void fillScreen(SDL_Surface *ecran, int r, int g, int b) {
     SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, r, g, b));
     SDL_Flip(ecran);
 }
+
 
 void upi(char c,int i[]){
   if (c=='B' ) {
@@ -58,6 +55,9 @@ void upi(char c,int i[]){
     i[5]=1;
   }
 }
+
+
+
 
 void jouable(grille g,liste l,int i[6],int taille){
    if (!listevide(l)) {
@@ -103,8 +103,6 @@ void printjouable(int j[6]){
 }
 
 
-
-
 void affiche_SDL(grille g,int taille,SDL_Surface *ecran,int sz_rect,int coup,int mmax,int flag,int ww)
 {
     SDL_Rect animRect;
@@ -115,13 +113,10 @@ void affiche_SDL(grille g,int taille,SDL_Surface *ecran,int sz_rect,int coup,int
     SDL_FillRect(ecran , &animRect , SDL_MapRGB(ecran->format , 255 ,255 ,255 ) );
    int i,ligne,colonne;
    char couleur;
-   int a=100;
     SDL_Surface *texte = NULL;
     SDL_Rect position;
-    SDL_Event event;
     TTF_Font *police = NULL;
     SDL_Color couleurNoire = {0, 0, 0};
-    int continuer = 1;
     SDL_Init(SDL_INIT_VIDEO);
     TTF_Init();
     char msg[100]="\n";
@@ -220,15 +215,10 @@ void affiche_SDL(grille g,int taille,SDL_Surface *ecran,int sz_rect,int coup,int
         SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */        
         SDL_Flip(ecran);
   }
-
-      
     TTF_CloseFont(police);
     TTF_Quit();
-
     SDL_FreeSurface(texte);
     TTF_Quit();
-
-  
 }
 
 
@@ -238,13 +228,9 @@ void affiche_SDL(grille g,int taille,SDL_Surface *ecran,int sz_rect,int coup,int
 int saisir_taille(SDL_Surface *ecran)
 {
     SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
-   int i,ligne,colonne;
-   char couleur;
    int taille=3;
-    int a=100;
     SDL_Surface *texte = NULL;
     SDL_Rect position;
-    SDL_Event event;
     TTF_Font *police = NULL;
     int continuer = 1;
     SDL_Init(SDL_INIT_VIDEO);
@@ -252,8 +238,7 @@ int saisir_taille(SDL_Surface *ecran)
    /* police = TTF_OpenFont("angelina.ttf", 50);*/
     police = TTF_OpenFont(/*Quaterback Fight*/"1.ttf", 40);
     char msg[100]="\n";
-   
-    while (continuer)
+   while (continuer)
     {
         police = TTF_OpenFont(/*Quaterback Fight*/"star.ttf", 40);
         sprintf(msg,"C");
@@ -306,9 +291,6 @@ int saisir_taille(SDL_Surface *ecran)
         texte = TTF_RenderText_Blended(police, msg, couleurJaune);
         SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
         SDL_Flip(ecran);
-
-
-
         police = TTF_OpenFont("block.ttf", 30);
         position.x = 10;
         position.y = 370;
@@ -335,13 +317,7 @@ int saisir_taille(SDL_Surface *ecran)
         sprintf(msg,"E");
         texte = TTF_RenderText_Blended(police, msg, couleurNoire);
         SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
-
-
         SDL_Flip(ecran);
-  
-
-
-
         police = TTF_OpenFont("2.ttf", 35);
         position.x = 210;
         position.y = 450;
@@ -363,9 +339,6 @@ int saisir_taille(SDL_Surface *ecran)
         sprintf(msg,"CEZ");
         texte = TTF_RenderText_Blended(police, msg, couleurBleu);
         SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
-
-
-
         SDL_Flip(ecran);
         SDL_Event event;
       while(1)
@@ -389,6 +362,7 @@ int saisir_taille(SDL_Surface *ecran)
         }
       }
      }
+           return taille;
 }
        
       

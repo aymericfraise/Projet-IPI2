@@ -101,7 +101,7 @@ int  couleur_marche(int j[],char couleur){
 
 /*choisir le mode de jouer*/
 
-int mode_jouer(SDL_Surface *ecran,int coup,int taille,int sz_rect)
+int mode_jouer(/*SDL_Surface *ecran,*/int coup/*int taille,int sz_rect*/)
 {
     SDL_Event event;
    while(1)
@@ -135,7 +135,6 @@ int mode_jouer(SDL_Surface *ecran,int coup,int taille,int sz_rect)
 int main() {
 
   srand((unsigned)time(NULL));
-  int flag=1;
   int width=560;
   int height=700;
 	SDL_Surface *ecran = NULL;
@@ -173,7 +172,7 @@ int main() {
   coup = *mmax+1;
 	/*printf("Le jeu peut être fini en %d coup\n",coup);*/
 	affiche_SDL(g,taille,ecran,sz_rect,coup,*mmax+1,1,0);
-  coup=mode_jouer(ecran,coup,taille,sz_rect);
+  coup=mode_jouer(/*ecran,*/coup/*taille,sz_rect*/);
   *mmax=coup-1;
   affiche_SDL(g,taille,ecran,sz_rect,coup,*mmax+1,0,0 );
 	l=makel(0,l);
