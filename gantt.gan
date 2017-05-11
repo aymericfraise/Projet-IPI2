@@ -4,7 +4,7 @@
         <field id="tpd3" name="Name" width="201" order="0"/>
         <field id="tpd4" name="Begin date" width="73" order="1"/>
         <field id="tpd5" name="End date" width="75" order="2"/>
-        <option id="color.recent"><![CDATA[#009900 #cc0033 #ff3333 #666666 #ffcc00]]></option>
+        <option id="color.recent"><![CDATA[#ffcc00 #ff3333 #009900 #990033 #003333 #cc0033 #666666]]></option>
     </view>
     <view id="resource-table">
         <field id="0" name="Name" width="210" order="0"/>
@@ -34,28 +34,49 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="0" name="Organisation" color="#666666" meeting="false" start="2017-03-20" duration="2" complete="0" expand="true">
+        <task id="0" name="C : Organisation" color="#003333" meeting="false" start="2017-03-20" duration="2" complete="0" expand="true">
             <depend id="2" type="2" difference="0" hardness="Strong"/>
             <depend id="4" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="23" name="Refactorisation Lot B" color="#009900" meeting="false" start="2017-03-22" duration="12" complete="0" expand="true"/>
-        <task id="2" name="Dev Solveur" color="#8cb6ce" meeting="false" start="2017-03-22" duration="8" complete="0" expand="true">
+        <task id="23" name="C : Refactorisation Lot B" color="#009900" meeting="false" start="2017-03-22" duration="12" complete="0" expand="true"/>
+        <task id="2" name="C : Dev Solveur" color="#8cb6ce" meeting="false" start="2017-03-22" duration="8" complete="0" expand="true">
             <depend id="7" type="2" difference="0" hardness="Strong"/>
             <depend id="8" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="8" name="Suite Dev Solveur" color="#8cb6ce" meeting="false" start="2017-04-03" duration="4" complete="0" expand="true">
+        <task id="8" name="C : Suite Dev Solveur" color="#8cb6ce" meeting="false" start="2017-04-03" duration="4" complete="0" expand="true">
             <depend id="10" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="7" name="Écriture TU" color="#8cb6ce" meeting="false" start="2017-04-03" duration="4" complete="0" expand="true">
+        <task id="7" name="C : Écriture TU" color="#8cb6ce" meeting="false" start="2017-04-03" duration="4" complete="0" expand="true">
             <depend id="10" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="4" name="Amélioration de l'interface" color="#ffcc00" meeting="false" start="2017-03-22" duration="12" complete="0" expand="true">
+        <task id="4" name="C : Amélioration de l'interface" color="#ffcc00" meeting="false" start="2017-03-22" duration="12" complete="0" expand="true">
             <depend id="10" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="10" name="Vérification Lot C" color="#ff3333" meeting="false" start="2017-04-07" duration="6" complete="0" expand="true">
+        <task id="10" name="C : Vérification du lot" color="#ff3333" meeting="false" start="2017-04-07" duration="6" complete="0" expand="true">
             <depend id="19" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="19" name="Rendu Lot C" color="#cc0033" meeting="false" start="2017-04-17" duration="1" complete="0" expand="true"/>
+        <task id="19" name="C : Rendu du lot" color="#cc0033" meeting="false" start="2017-04-17" duration="1" complete="0" expand="true"/>
+        <task id="24" name="D : Organisation" color="#003333" meeting="false" start="2017-04-19" duration="1" complete="0" expand="true">
+            <depend id="42" type="2" difference="0" hardness="Strong"/>
+            <depend id="48" type="2" difference="0" hardness="Strong"/>
+            <depend id="64" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="42" name="D : Refactorisation Lot C" color="#009900" meeting="false" start="2017-04-20" duration="16" complete="0" expand="true">
+            <depend id="57" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="48" name="D : Dev Solveur Optim" color="#8cb6ce" meeting="false" start="2017-04-20" duration="16" complete="0" expand="true">
+            <depend id="57" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="63" name="D : Écriture TU" color="#8cb6ce" meeting="false" start="2017-05-05" duration="5" complete="0" expand="true">
+            <depend id="57" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="64" name="D : Amélioration de l'interface" color="#ffcc00" meeting="false" start="2017-04-20" duration="16" complete="0" expand="true">
+            <depend id="57" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="57" name="D : Vérification du lot" color="#ff3333" meeting="false" start="2017-05-12" duration="1" complete="0" expand="true">
+            <depend id="38" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="38" name="D : Rendu du lot" color="#990033" meeting="false" start="2017-05-15" duration="1" complete="0" expand="true"/>
     </tasks>
     <resources/>
     <allocations/>
