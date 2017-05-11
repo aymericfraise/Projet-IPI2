@@ -112,11 +112,11 @@ int mode_jouer(SDL_Surface *ecran,int coup,int taille,int sz_rect)
         int x,y;
         x = event.button.x ;
         y = event.button.y ;
-        if(x>=10 && x<=140 && y>=taille*sz_rect+sz_rect && y<=taille*sz_rect+sz_rect+65)
+        if(x>=10 && x<=140 && y>=610&& y<=610+65)
             { coup+=10;break;}
-        else if(x>=160 && x<=290 && y>=taille*sz_rect+sz_rect && y<=taille*sz_rect+sz_rect+65)
+        else if(x>=160 && x<=290 && y>=610 && y<=610+65)
             { coup+=5;break;}
-        else if(x>=330 && x<=500 && y>=taille*sz_rect+sz_rect && y<=taille*sz_rect+sz_rect+65)
+        else if(x>=330 && x<=500 && y>=610 && y<=610+65)
             { coup=coup;break;}
       }
     }
@@ -132,15 +132,14 @@ int mode_jouer(SDL_Surface *ecran,int coup,int taille,int sz_rect)
      
 
 
-int main(/*int argc, char *argv[]*/) {
+int main() {
 
   srand((unsigned)time(NULL));
   int flag=1;
-  int width=500;
+  int width=560;
   int height=700;
 	SDL_Surface *ecran = NULL;
   const SDL_VideoInfo* info = NULL;
-	SDL_Surface *ima=NULL;
 	char couleur;
 	int j[6],i;
 	int taille;
@@ -159,55 +158,59 @@ int main(/*int argc, char *argv[]*/) {
     SDL_Quit( );
   }
 	ecran=SDL_SetVideoMode(width, height, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
-        taille=saisir_taille(ecran);
-        sz_rect=set_sz_rect(taille,&width);
+  taille=saisir_taille(ecran);
+  width=500;
+  sz_rect=set_sz_rect(taille,&width);
+  ecran=SDL_SetVideoMode(width, height, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
 	SDL_WM_SetCaption("COLOR FLOOD DE MYAJ", NULL);
-  ima = SDL_LoadBMP("./cerise.bmp");
 	fillScreen(ecran, 255,255,255);
-        grille g=Grille(taille);
-        init_grille(g,taille);
-        int max=(taille*taille);
+  grille g=Grille(taille);
+  init_grille(g,taille);
+  int max=(taille*taille);
 	int* mmax=&max;
 	char gg[taille*taille+1];
-        oui(g,taille,mmax,0,gg);
-        coup = *mmax+1;
-	printf("Le jeu peut être fini en %d coup\n",coup);
-	affiche_SDL(g,taille,ecran,sz_rect,coup,*mmax+1,1 );
-        coup=mode_jouer(ecran,coup,taille,sz_rect);
-        *mmax=coup-1;
-        affiche_SDL(g,taille,ecran,sz_rect,coup,*mmax+1,0 );
-        printf("**************%d*****coup2\n",coup);
+  oui(g,taille,mmax,0,gg);
+  coup = *mmax+1;
+	/*printf("Le jeu peut être fini en %d coup\n",coup);*/
+	affiche_SDL(g,taille,ecran,sz_rect,coup,*mmax+1,1,0);
+  coup=mode_jouer(ecran,coup,taille,sz_rect);
+  *mmax=coup-1;
+  affiche_SDL(g,taille,ecran,sz_rect,coup,*mmax+1,0,0 );
 	l=makel(0,l);
 	l=composante(g,l,taille);
-
-	
-	    ww =win(g,taille);
-	    while (!ww && coup>0) {
+  ww =win(g,taille);
+  /******************************************************/
+  while (!ww && coup>0) {
 	    for ( i = 0; i < 6; i++)
 	    {
 	      j[i]=0;
 	    }
-	    jouable(g,l,j,taille);
-	    printjouable(j);
+	    jouable(g,l,j,taille);  
+	    /*printjouable(j);*/
 	    p=clik_change(ecran);
 	    couleur=find_couleur(p);
-	    if(!couleur_marche(j,couleur)){
-			    printf("La couleur que vous avez donné n'est pas jouable.\n");
-		continue;
+	    if(!couleur_marche(j,couleur))
+      {
+			  printf("La couleur que vous avez donné n'est pas jouable.\n");
+		    continue;
 	    }
 	    coup--;
-	    changeall(g,l,couleur);
-	    affiche_SDL(g,taille,ecran,sz_rect,coup,*mmax+1,0);
-	    l=composante(g,l,taille);
-	    ww=win(g,taille);}
-           while(1)
-           {
-            SDL_WaitEvent(&event);
-            if(event.type==SDL_QUIT)
-	    {
-               SDL_Quit();
-               break;
-            }
-           } 
+      changeall(g,l,couleur);
+      l=composante(g,l,taille);
+       ww=win(g,taille);
+      printf("***********ww:%d\n",ww);
+	    affiche_SDL(g,taille,ecran,sz_rect,coup,*mmax+1,0,ww);
+	    
+	    }
+      /*******************************************************/ 
+      while(1)
+     {
+       SDL_WaitEvent(&event);
+      if(event.type==SDL_QUIT)
+	     {
+         SDL_Quit();
+        break;
+       }
+    } 
 	    return 0;
 	}

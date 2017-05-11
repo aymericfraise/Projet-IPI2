@@ -9,6 +9,18 @@
 */
 
 int autoDraw=0;
+SDL_Color couleurNoire = {0, 0, 0};
+SDL_Color couleurBleu = {0, 0, 255};
+SDL_Color couleurVert = {0, 100, 0};
+SDL_Color couleurRouge = {255, 0, 0};
+SDL_Color couleurJaune = {255,215,0};
+SDL_Color couleurMarron = {139, 69, 19};
+SDL_Color couleurGris = {139, 87, 66};
+
+ 
+
+
+
 
 // px, py coordonnées haut, gauche du pixel
 void drawRectangle(SDL_Surface *ecran, int px, int py, int size, int r, int g, int b) {
@@ -90,14 +102,20 @@ void printjouable(int j[6]){
  printf("\n");
 }
 
-void affiche_SDL(grille g,int taille,SDL_Surface *ecran,int sz_rect,int coup,int mmax,int flag)
+
+
+
+void affiche_SDL(grille g,int taille,SDL_Surface *ecran,int sz_rect,int coup,int mmax,int flag,int ww)
 {
-    
-   SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
+    SDL_Rect animRect;
+    animRect.x = 0 ;
+    animRect.y = 500 ;
+    animRect.w = 500 ; 
+    animRect.h = 200 ; 
+    SDL_FillRect(ecran , &animRect , SDL_MapRGB(ecran->format , 255 ,255 ,255 ) );
    int i,ligne,colonne;
    char couleur;
-   
-    int a=100;
+   int a=100;
     SDL_Surface *texte = NULL;
     SDL_Rect position;
     SDL_Event event;
@@ -106,13 +124,10 @@ void affiche_SDL(grille g,int taille,SDL_Surface *ecran,int sz_rect,int coup,int
     int continuer = 1;
     SDL_Init(SDL_INIT_VIDEO);
     TTF_Init();
-   /* SDL_WM_SetCaption("Gestion du texte avec SDL_ttf", NULL);*/
     char msg[100]="\n";
-    sprintf(msg,"coup: %d/%d",coup,mmax);
-    police = TTF_OpenFont("angelina.ttf", 65);
+    sprintf(msg,"%d/%d",coup,mmax);
+    police = TTF_OpenFont("2.ttf", 40);
     texte = TTF_RenderText_Blended(police, msg, couleurNoire);
-    
-    
     for(i=0;i<taille*taille;i++)
          {
              couleur=get_couleur(g,i);
@@ -126,51 +141,86 @@ void affiche_SDL(grille g,int taille,SDL_Surface *ecran,int sz_rect,int coup,int
              }
           } 
 
-/*le premier initialisation*/
+/*la première initialisation*/
    if(flag==1)
   {
-     while (continuer)
-    {
-        police = TTF_OpenFont("angelina.ttf", 50);
+        police = TTF_OpenFont("2.ttf", 30);
         position.x = 10;
-        position.y = taille*sz_rect+sz_rect/2;
-        sprintf(msg,"choisissez votre mode de jouer:");
+        position.y = 550;
+        sprintf(msg,"mode de jouer:");
         texte = TTF_RenderText_Blended(police, msg, couleurNoire);
         SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
-        police = TTF_OpenFont("angelina.ttf", 65);
         position.x = 10;
-        position.y = taille*sz_rect+sz_rect;
+        position.y = 610;
         sprintf(msg,"facile");
-        texte = TTF_RenderText_Blended(police, msg, couleurNoire);
+        texte = TTF_RenderText_Blended(police, msg, couleurJaune);
         SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
         position.x = 160;
-        position.y = taille*sz_rect+sz_rect;
+        position.y = 610;
         sprintf(msg,"moyen");
-        texte = TTF_RenderText_Blended(police, msg, couleurNoire);
+        texte = TTF_RenderText_Blended(police, msg, couleurRouge);
         SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
         position.x = 330;
-        position.y = taille*sz_rect+sz_rect;
+        position.y = 610;
         sprintf(msg,"difficile");
+        texte = TTF_RenderText_Blended(police, msg, couleurVert);
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+        SDL_Flip(ecran);
+ }
+     else if( flag==0 && ww==0)
+ {
+        SDL_Flip(ecran);
+        position.x = 200;
+        position.y = 600;
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+        SDL_Flip(ecran);
+ }
+  else if(flag==0 && ww==1)
+   {        
+        police = TTF_OpenFont("fireworks.ttf", 100); 
+        position.x = 50;
+        position.y = 610;
+        sprintf(msg,"y");
+        texte = TTF_RenderText_Blended(police, msg, couleurRouge);
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+         police = TTF_OpenFont("2.ttf", 30); 
+        position.x = 170;
+        position.y = 610;
+        sprintf(msg,"GAGNEZ!");
+        texte = TTF_RenderText_Blended(police, msg, couleurRouge);
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+        police = TTF_OpenFont("fireworks.ttf", 100); 
+        position.x = 400;
+        position.y = 610;
+        sprintf(msg,"y");
+        texte = TTF_RenderText_Blended(police, msg, couleurRouge);
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+        SDL_Flip(ecran);
+
+   }
+   if(coup==0)
+  {
+        SDL_FillRect(ecran , &animRect , SDL_MapRGB(ecran->format , 255 ,255 ,255 ) );
+        police = TTF_OpenFont("2.ttf", 30); 
+        position.x = 160;
+        position.y = 600;
+        sprintf(msg,"DOMMAGE");
         texte = TTF_RenderText_Blended(police, msg, couleurNoire);
         SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
-
+        police = TTF_OpenFont("face.ttf", 100); 
+        position.x = 30;
+        position.y = 600;
+        sprintf(msg,"L");
+        texte = TTF_RenderText_Blended(police, msg, couleurNoire);
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */  
+        position.x = 370;
+        position.y = 600;
+        sprintf(msg,"L");
+        texte = TTF_RenderText_Blended(police, msg, couleurNoire);
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */        
         SDL_Flip(ecran);
-        break;
-     }
- }
-     
- else if( flag==0)
- {
+  }
 
-   while (continuer)
-    {
-        position.x = sz_rect;
-        position.y = taille*sz_rect+sz_rect;
-        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
-        SDL_Flip(ecran);
-        break;
-     }
- }
       
     TTF_CloseFont(police);
     TTF_Quit();
@@ -196,40 +246,126 @@ int saisir_taille(SDL_Surface *ecran)
     SDL_Rect position;
     SDL_Event event;
     TTF_Font *police = NULL;
-    SDL_Color couleurNoire = {0, 0, 0};
     int continuer = 1;
     SDL_Init(SDL_INIT_VIDEO);
     TTF_Init();
    /* police = TTF_OpenFont("angelina.ttf", 50);*/
-    police = TTF_OpenFont("Quaterback Fight.ttf", 30);
+    police = TTF_OpenFont(/*Quaterback Fight*/"1.ttf", 40);
     char msg[100]="\n";
-   sprintf(msg,"COLOR FLOOD DE MYAJ");
-   texte = TTF_RenderText_Blended(police, msg, couleurNoire);
+   
     while (continuer)
     {
+        police = TTF_OpenFont(/*Quaterback Fight*/"star.ttf", 40);
+        sprintf(msg,"C");
+        texte = TTF_RenderText_Blended(police, msg, couleurRouge);
         SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
-        position.x = 50;
+        position.x = 27;
         position.y = 100;
         SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+        sprintf(msg,"O");
+        texte = TTF_RenderText_Blended(police, msg, couleurJaune);
+        position.x = 27+50;
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+        sprintf(msg,"L");
+        texte = TTF_RenderText_Blended(police, msg, couleurMarron);
+        position.x = 27+100;
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+        sprintf(msg,"O");
+        texte = TTF_RenderText_Blended(police, msg, couleurVert);
+        position.x = 27+150;
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+        sprintf(msg,"R");
+        texte = TTF_RenderText_Blended(police, msg, couleurBleu);
+        position.x = 27+200;
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+        sprintf(msg,"F");
+        texte = TTF_RenderText_Blended(police, msg, couleurBleu);
+        position.x = 27+250+20;
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+        sprintf(msg,"L");
+        texte = TTF_RenderText_Blended(police, msg, couleurVert);
+        position.x = 27+20+300;
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+        sprintf(msg,"O");
+        texte = TTF_RenderText_Blended(police, msg, couleurMarron);
+        position.x = 27+20+350;
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+        sprintf(msg,"O");
+        texte = TTF_RenderText_Blended(police, msg, couleurJaune);
+        position.x = 27+20+400;
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+        sprintf(msg,"D");
+        texte = TTF_RenderText_Blended(police, msg, couleurRouge);
+        position.x = 27+20+450;
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
         SDL_Flip(ecran);
-        police = TTF_OpenFont("2.ttf", 30);
+        police = TTF_OpenFont("face.ttf", 100);
+        position.x = 215;
+        position.y = 200;
+        sprintf(msg,"T");
+        texte = TTF_RenderText_Blended(police, msg, couleurJaune);
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+        SDL_Flip(ecran);
+
+
+
+        police = TTF_OpenFont("block.ttf", 30);
         position.x = 10;
-        position.y = 300;
-        sprintf(msg,"CHOISISSEZ LA TAILLE:");
+        position.y = 370;
+        sprintf(msg,"T");
+        texte = TTF_RenderText_Blended(police, msg, couleurRouge);
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+        position.x = 10+40;
+        sprintf(msg,"A");
+        texte = TTF_RenderText_Blended(police, msg, couleurJaune);
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */ 
+        position.x=10+80;
+        sprintf(msg,"I");
+        texte = TTF_RenderText_Blended(police, msg, couleurGris);
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+        position.x=10+120;
+        sprintf(msg,"L");
+        texte = TTF_RenderText_Blended(police, msg, couleurVert);
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+        position.x=10+160;
+        sprintf(msg,"L");
+        texte = TTF_RenderText_Blended(police, msg, couleurBleu);
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+        position.x=10+200;
+        sprintf(msg,"E");
         texte = TTF_RenderText_Blended(police, msg, couleurNoire);
         SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+
+
         SDL_Flip(ecran);
-        position.x = 200;
-        position.y = 400;
+  
+
+
+
+        police = TTF_OpenFont("2.ttf", 35);
+        position.x = 210;
+        position.y = 450;
         sprintf(msg,"+ %d -",taille);
-        texte = TTF_RenderText_Blended(police, msg, couleurNoire);
+        texte = TTF_RenderText_Blended(police, msg, couleurRouge);
         SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
-        SDL_Flip(ecran);
+         SDL_Flip(ecran);
+        police = TTF_OpenFont("ballon.ttf", 30);
         position.x = 300;
-        position.y = 550;
-        sprintf(msg,"ON Y VA!");
-        texte = TTF_RenderText_Blended(police, msg, couleurNoire);
+        position.y = 570;
+        sprintf(msg,"COM");
+        texte = TTF_RenderText_Blended(police, msg, couleurVert);
         SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+        position.x = 300+73;
+        sprintf(msg,"MEN");
+        texte = TTF_RenderText_Blended(police, msg, couleurRouge);
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+        position.x = 300+73+73;
+        sprintf(msg,"CEZ");
+        texte = TTF_RenderText_Blended(police, msg, couleurBleu);
+        SDL_BlitSurface(texte, NULL, ecran, &position); /* Blit du texte */
+
+
+
         SDL_Flip(ecran);
         SDL_Event event;
       while(1)
@@ -240,11 +376,11 @@ int saisir_taille(SDL_Surface *ecran)
         int x,y;
         x = event.button.x ;
         y = event.button.y ;
-        if(x>=200 && x<=250 && y>=400 && y<=450)
+        if(x>=210 && x<=250 && y>=450 && y<=485)
              {taille++;break;}
-        else if(x>=250 && x<=450 && y>=400 && y<=450 && taille>3)
+        else if(x>=260 && x<=450 && y>=450 && y<=485 && taille>3)
              {taille--;break;}
-        else if(x>=300 && x<=500 && y>=550 && y<=600)
+        else if(x>=300 && x<=560 && y>=570 && y<=600)
               {TTF_CloseFont(police);
                TTF_Quit();
                SDL_FreeSurface(texte);

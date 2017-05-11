@@ -94,6 +94,8 @@ int win(grille g,int taille){
   {
      if(get_dedans(g,i) ==0)
       return 0;
+     else
+      continue;
    }
    return 1;
 }

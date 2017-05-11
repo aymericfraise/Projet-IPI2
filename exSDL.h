@@ -52,6 +52,6 @@ void printjouable(int j[]);
   \param SDL_Surface *ecran représente l'écran
   \param int sz_rect représente ma taille de rectangle
 */
-void affiche_SDL(grille g,int taille,SDL_Surface *ecran,int sz_rect,int coup,int mmax,int flag);
+void affiche_SDL(grille g,int taille,SDL_Surface *ecran,int sz_rect,int coup,int mmax,int flag,int ww);
 
 int saisir_taille(SDL_Surface *ecran);
