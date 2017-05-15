@@ -403,9 +403,104 @@ int saisir_taille(SDL_Surface *ecran)
                return taille;
 }
        
-      
-        
+     
+int set_sz_rect(int taille,int* width)
+{
+    if(*width%taille!=0)
+    {
+      *width=(*width/taille)*taille;
+    }
+    return *width/taille;
+}       
        
-       
+Uint8* clik_change(SDL_Surface *ecran)
+{
+   SDL_Event event;
+   /*int autoDraw=0;*/
+   Uint8 *p;
+   while(1)
+    {
+       SDL_WaitEvent(&event);
+       if(event.type==SDL_QUIT)
+       {
+             SDL_Quit();
+             break;
+        }
+      if (event.type==SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT)
+      {
+        int x,y;
+        x = event.button.x ;
+        y = event.button.y ;
+        int bpp = ecran->format->BytesPerPixel;
+        p = (Uint8 *)ecran->pixels + y * ecran->pitch + x * bpp;
+        break;
+       }
+     }
+     return p;
+}
+
+
+char find_couleur(Uint8 * p)
+{
+         char c;
+        if(p[2]==0 && p[1]==0 && p[0]==255)
+           c='B';
+        else if(p[2]==0 && p[1]==100 && p[0]==0)
+           c='V';
+        else if (p[2]==255 && p[1]==0 && p[0]==0)
+           c='R';
+        else if (p[2]==255 && p[1]==185 && p[0]==15)
+           c='J';
+         else if (p[2]==139 && p[1]==69 && p[0]==19)
+           c='M';
+         else if (p[2]==139 && p[1]==87 && p[0]==66)
+           c='G';
+          return c;
+}
+
+
+int  couleur_marche(int j[6],char couleur)
+{
+     int ret=0;
+      if (j[0]==1 && couleur=='B')
+        ret=1;
+      if (j[1]==1 && couleur=='V')
+        ret=1;
+      if (j[2]==1 && couleur=='R')
+        ret=1;
+      if (j[3]==1 && couleur=='J')
+        ret=1;
+      if (j[4]==1 && couleur=='M')
+        ret=1;
+      if (j[5]==1 && couleur=='G')
+        ret=1;
+      return ret;
+}
+
+
+/*choisir le mode de jouer*/
+
+int mode_jouer(int coup)
+{
+    SDL_Event event;
+   while(1)
+    {
+       SDL_WaitEvent(&event);
+      if (event.type==SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT)
+      {
+        int x,y;
+        x = event.button.x ;
+        y = event.button.y ;
+        if(x>=10 && x<=140 && y>=610&& y<=610+65)
+            { coup+=10;break;}
+        else if(x>=160 && x<=290 && y>=610 && y<=610+65)
+            { coup+=5;break;}
+        else if(x>=330 && x<=500 && y>=610 && y<=610+65)
+            { coup=coup;break;}
+      }
+    }
+      return coup;
+}
+     
     
      
