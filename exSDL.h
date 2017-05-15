@@ -67,3 +67,42 @@ void affiche_SDL(grille g,int taille,SDL_Surface *ecran,int sz_rect,int coup,int
     \brief Permet de retourner la taille de grille que le joueur choisit et il peut réaliser les effetd de page d'acceuil
 **/
 int saisir_taille(SDL_Surface *ecran);
+/**
+    \fn set_sz_rect(int taille,int* width);
+    \param int taille,int* width
+    \return la taille de chaque case 
+    \brief Permet de retourner la taille de chaque case à l'aide de taille et width du graphe
+**/
+int set_sz_rect(int taille,int* width);
+/**
+    \fn clik_change(SDL_Surface *ecran);
+    \param SDL_Surface *ecran
+    \return la couleur de la part que tu cliques 
+    \brief Permet d'obtenir la couleur 
+**/
+Uint8* clik_change(SDL_Surface *ecran);
+/**
+    \fn  find_couleur(Uint8 * p);
+    \param Uint8 * p
+    \return la couleur qui correspond à la couleur que la paramètre p signifie
+    \brief Permet d'obtenir la couleur sous la forme de caractère
+**/
+char find_couleur(Uint8 * p);
+/**
+    \fn  couleur_marche(int j[6],char couleur);
+    \param int j[6],char couleur
+    \return la valeur 1 ou la valeur 0
+    \brief Permet de savoir si cette couleur marche ou pas dans ce cas
+**/
+int  couleur_marche(int j[6],char couleur);
+/**
+    \fn  mode_jouer(int coup);
+    \param int coup
+    \return la valeur de coup autorisé
+    \brief Permet de retourner le coup choisit
+**/
+int mode_jouer(int coup);
+
+
+
+
