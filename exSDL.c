@@ -17,7 +17,7 @@ SDL_Color couleurJaune = {255,215,0};
 SDL_Color couleurMarron = {139, 69, 19};
 SDL_Color couleurGris = {139, 87, 66};
 
- 
+
 
 void drawRectangle(SDL_Surface *ecran, int px, int py, int size, int r, int g, int b) {
     SDL_Rect rect;
@@ -108,8 +108,8 @@ void affiche_SDL(grille g,int taille,SDL_Surface *ecran,int sz_rect,int coup,int
     SDL_Rect animRect;
     animRect.x = 0 ;
     animRect.y = 500 ;
-    animRect.w = 500 ; 
-    animRect.h = 200 ; 
+    animRect.w = 500 ;
+    animRect.h = 200 ;
     SDL_FillRect(ecran , &animRect , SDL_MapRGB(ecran->format , 255 ,255 ,255 ) );
    int i,ligne,colonne;
    char couleur;
@@ -120,7 +120,7 @@ void affiche_SDL(grille g,int taille,SDL_Surface *ecran,int sz_rect,int coup,int
     TTF_Init();
     TTF_Font *police1 = TTF_OpenFont("2.ttf", 30);;
     TTF_Font *police2 = TTF_OpenFont("2.ttf", 40);;
-    TTF_Font *police3 = TTF_OpenFont("fireworks.ttf", 100); 
+    TTF_Font *police3 = TTF_OpenFont("fireworks.ttf", 100);
     TTF_Font *police4 = TTF_OpenFont("face.ttf", 100);
     char msg[100]="\n";
     for(i=0;i<taille*taille;i++)
@@ -134,7 +134,7 @@ void affiche_SDL(grille g,int taille,SDL_Surface *ecran,int sz_rect,int coup,int
              case 'M':{ligne=i/taille;colonne=i%taille;drawRectangle(ecran, ligne*sz_rect, colonne*sz_rect, sz_rect, 139, 69, 19);break;}
              case 'G':{ligne=i/taille;colonne=i%taille;drawRectangle(ecran, ligne*sz_rect, colonne*sz_rect, sz_rect, 139, 87, 66);break;}
              }
-          } 
+          }
 
 /*la première initialisation*/
    if(flag==1)
@@ -143,19 +143,19 @@ void affiche_SDL(grille g,int taille,SDL_Surface *ecran,int sz_rect,int coup,int
         position.y = 550;
         sprintf(msg,"mode de jouer:");
         texte = TTF_RenderText_Blended(police1, msg, couleurNoire);
-        SDL_BlitSurface(texte, NULL, ecran, &position); 
+        SDL_BlitSurface(texte, NULL, ecran, &position);
         SDL_FreeSurface(texte);
         position.x = 10;
         position.y = 610;
         sprintf(msg,"facile");
         texte = TTF_RenderText_Blended(police1, msg, couleurJaune);
-        SDL_BlitSurface(texte, NULL, ecran, &position); 
+        SDL_BlitSurface(texte, NULL, ecran, &position);
         SDL_FreeSurface(texte);
         position.x = 160;
         position.y = 610;
         sprintf(msg,"moyen");
         texte = TTF_RenderText_Blended(police1, msg, couleurRouge);
-        SDL_BlitSurface(texte, NULL, ecran, &position); 
+        SDL_BlitSurface(texte, NULL, ecran, &position);
         SDL_FreeSurface(texte);
         position.x = 330;
         position.y = 610;
@@ -171,12 +171,12 @@ void affiche_SDL(grille g,int taille,SDL_Surface *ecran,int sz_rect,int coup,int
         texte = TTF_RenderText_Blended(police2, msg, couleurNoire);
         position.x = 200;
         position.y = 600;
-        SDL_BlitSurface(texte, NULL, ecran, &position); 
+        SDL_BlitSurface(texte, NULL, ecran, &position);
         SDL_FreeSurface(texte);
         SDL_Flip(ecran);
  }
   else if(flag==0 && ww==1)
-   {        
+   {
         position.x = 50;
         position.y = 610;
         sprintf(msg,"y");
@@ -189,17 +189,17 @@ void affiche_SDL(grille g,int taille,SDL_Surface *ecran,int sz_rect,int coup,int
         texte = TTF_RenderText_Blended(police3, msg, couleurRouge);
         SDL_BlitSurface(texte, NULL, ecran, &position);
         SDL_FreeSurface(texte);
-        position.x = 170;
+        position.x = 135;
         position.y = 610;
-        sprintf(msg,"GAGNEZ!");
+        sprintf(msg,"VOUS GAGNEZ!");
         texte = TTF_RenderText_Blended(police1, msg, couleurRouge);
         SDL_BlitSurface(texte, NULL, ecran, &position);
         SDL_FreeSurface(texte);
         SDL_Flip(ecran);
- 
+
 
    }
-   if(coup==0)
+   if(coup==0 && ww!=1)
   {
         SDL_FillRect(ecran , &animRect , SDL_MapRGB(ecran->format , 255 ,255 ,255 ) );
         position.x = 160;
@@ -207,19 +207,19 @@ void affiche_SDL(grille g,int taille,SDL_Surface *ecran,int sz_rect,int coup,int
         sprintf(msg,"DOMMAGE");
         texte = TTF_RenderText_Blended(police1, msg, couleurNoire);
         SDL_BlitSurface(texte, NULL, ecran, &position);
-        SDL_FreeSurface(texte); 
+        SDL_FreeSurface(texte);
         position.x = 30;
         position.y = 600;
         sprintf(msg,"L");
         texte = TTF_RenderText_Blended(police4, msg, couleurNoire);
-        SDL_BlitSurface(texte, NULL, ecran, &position); 
-        SDL_FreeSurface(texte);  
+        SDL_BlitSurface(texte, NULL, ecran, &position);
+        SDL_FreeSurface(texte);
         position.x = 370;
         position.y = 600;
         sprintf(msg,"L");
         texte = TTF_RenderText_Blended(police4, msg, couleurNoire);
-        SDL_BlitSurface(texte, NULL, ecran, &position); 
-        SDL_FreeSurface(texte);        
+        SDL_BlitSurface(texte, NULL, ecran, &position);
+        SDL_FreeSurface(texte);
         SDL_Flip(ecran);
   }
     TTF_CloseFont(police1);
@@ -242,7 +242,7 @@ int saisir_taille(SDL_Surface *ecran)
     TTF_Init();
     SDL_Surface *texte = NULL;
     SDL_Rect position;
-    TTF_Font *police1 = TTF_OpenFont("star.ttf", 40); 
+    TTF_Font *police1 = TTF_OpenFont("star.ttf", 40);
     TTF_Font *police2 = TTF_OpenFont("face.ttf", 100);
     TTF_Font *police3 = TTF_OpenFont("block.ttf", 30);
     TTF_Font *police4 = TTF_OpenFont("ballon.ttf", 30);
@@ -256,12 +256,12 @@ int saisir_taille(SDL_Surface *ecran)
         SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
         position.x = 27;
         position.y = 100;
-        SDL_BlitSurface(texte, NULL, ecran, &position); 
+        SDL_BlitSurface(texte, NULL, ecran, &position);
         SDL_FreeSurface(texte);
         sprintf(msg,"O");
         texte = TTF_RenderText_Blended(police1, msg, couleurJaune);
         position.x = 27+50;
-        SDL_BlitSurface(texte, NULL, ecran, &position); 
+        SDL_BlitSurface(texte, NULL, ecran, &position);
         SDL_FreeSurface(texte);
         sprintf(msg,"L");
         texte = TTF_RenderText_Blended(police1, msg, couleurMarron);
@@ -276,7 +276,7 @@ int saisir_taille(SDL_Surface *ecran)
         sprintf(msg,"R");
         texte = TTF_RenderText_Blended(police1, msg, couleurBleu);
         position.x = 27+200;
-        SDL_BlitSurface(texte, NULL, ecran, &position); 
+        SDL_BlitSurface(texte, NULL, ecran, &position);
         SDL_FreeSurface(texte);
         sprintf(msg,"F");
         texte = TTF_RenderText_Blended(police1, msg, couleurBleu);
@@ -296,12 +296,12 @@ int saisir_taille(SDL_Surface *ecran)
         sprintf(msg,"O");
         texte = TTF_RenderText_Blended(police1, msg, couleurJaune);
         position.x = 27+20+400;
-        SDL_BlitSurface(texte, NULL, ecran, &position); 
+        SDL_BlitSurface(texte, NULL, ecran, &position);
         SDL_FreeSurface(texte);
         sprintf(msg,"D");
         texte = TTF_RenderText_Blended(police1, msg, couleurRouge);
         position.x = 27+20+450;
-        SDL_BlitSurface(texte, NULL, ecran, &position); 
+        SDL_BlitSurface(texte, NULL, ecran, &position);
         SDL_FreeSurface(texte);
         SDL_Flip(ecran);
         position.x = 215;
@@ -320,8 +320,8 @@ int saisir_taille(SDL_Surface *ecran)
         position.x = 10+40;
         sprintf(msg,"A");
         texte = TTF_RenderText_Blended(police3, msg, couleurJaune);
-        SDL_BlitSurface(texte, NULL, ecran, &position); 
-        SDL_FreeSurface(texte); 
+        SDL_BlitSurface(texte, NULL, ecran, &position);
+        SDL_FreeSurface(texte);
         position.x=10+80;
         sprintf(msg,"I");
         texte = TTF_RenderText_Blended(police3, msg, couleurGris);
@@ -330,17 +330,17 @@ int saisir_taille(SDL_Surface *ecran)
         position.x=10+120;
         sprintf(msg,"L");
         texte = TTF_RenderText_Blended(police3, msg, couleurVert);
-        SDL_BlitSurface(texte, NULL, ecran, &position); 
+        SDL_BlitSurface(texte, NULL, ecran, &position);
         SDL_FreeSurface(texte);
         position.x=10+160;
         sprintf(msg,"L");
         texte = TTF_RenderText_Blended(police3, msg, couleurBleu);
-        SDL_BlitSurface(texte, NULL, ecran, &position); 
+        SDL_BlitSurface(texte, NULL, ecran, &position);
         SDL_FreeSurface(texte);
         position.x=10+200;
         sprintf(msg,"E");
         texte = TTF_RenderText_Blended(police3, msg, couleurNoire);
-        SDL_BlitSurface(texte, NULL, ecran, &position); 
+        SDL_BlitSurface(texte, NULL, ecran, &position);
         SDL_FreeSurface(texte);
         SDL_Flip(ecran);
         position.x = 300;
@@ -402,8 +402,8 @@ int saisir_taille(SDL_Surface *ecran)
                TTF_Quit();
                return taille;
 }
-       
-     
+
+
 int set_sz_rect(int taille,int* width)
 {
     if(*width%taille!=0)
@@ -411,8 +411,8 @@ int set_sz_rect(int taille,int* width)
       *width=(*width/taille)*taille;
     }
     return *width/taille;
-}       
-       
+}
+
 Uint8* clik_change(SDL_Surface *ecran)
 {
    SDL_Event event;
@@ -501,6 +501,3 @@ int mode_jouer(int coup)
     }
       return coup;
 }
-     
-    
-     
