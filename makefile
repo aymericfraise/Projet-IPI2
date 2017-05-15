@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-std=gnu89 -Wall -Wextra -g
+CFLAGS= -Wall -Wextra -g
 OBJS = main.o exSDL.o grille.o couleur.o tests_unitaires.o naif.o
 
 all: color-flood tests_unitaires doxygen
@@ -18,7 +18,10 @@ exSDL.o: exSDL.c exSDL.h grille.h couleur.h
 naif.o : naif.c grille.h couleur.h exSDL.h
 	$(CC) $(CFLAGS) -c  naif.c -lSDL  -lSDL_ttf
 
-main.o : main.c grille.h couleur.h exSDL.h naif.h
+graphe3.o: graphe3.c graphe3.h
+	$(CC) $(CFLAGS) -c  graphe3.c
+
+main.o : main.c grille.h couleur.h exSDL.h naif.h graphe3.h
 	$(CC) $(CFLAGS) -c  main.c  -lSDL -lSDL_ttf -Wno-missing-field-initializers
 
 tests_unitaires.o: tests_unitaires.c grille.h couleur.h
@@ -26,7 +29,7 @@ tests_unitaires.o: tests_unitaires.c grille.h couleur.h
 
 #-------------------------------------------------------------------
 
-color-flood : main.o exSDL.o grille.o couleur.o naif.o
+color-flood : main.o exSDL.o grille.o couleur.o naif.o graphe3.o
 	$(CC) $(CFLAGS)    $^ -o $@ -lSDL -lSDL_ttf
 
 tests_unitaires: tests_unitaires.o exSDL.o grille.o couleur.o naif.o
