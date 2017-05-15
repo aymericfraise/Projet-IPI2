@@ -80,7 +80,7 @@ char find_couleur(Uint8 * p)
 }
 
 
-int  couleur_marche(int j[],char couleur){
+int  couleur_marche(int j[6],char couleur){
      int ret=0;
       if (j[0]==1 && couleur=='B')
         ret=1;
@@ -133,33 +133,27 @@ int mode_jouer(/*SDL_Surface *ecran,*/int coup/*int taille,int sz_rect*/)
 
 
 int main() {
-
   srand((unsigned)time(NULL));
   int width=560;
   int height=700;
-	SDL_Surface *ecran = NULL;
-  const SDL_VideoInfo* info = NULL;
-	char couleur;
-	int j[6],i;
-	int taille;
-	SDL_Event event;
-	int sz_rect;
-	Uint8 *p;
-	liste l=NULL;
-	int coup,ww;
-  if( SDL_Init( SDL_INIT_VIDEO ) < 0 ) {
-    fprintf( stderr, "Video initialization failed : %s\n", SDL_GetError( ) );
-    SDL_Quit( );
-  }
-  info = SDL_GetVideoInfo( );
-  if( !info ) {
-    fprintf( stderr, "Video query failed: %s\n", SDL_GetError( ) );
-    SDL_Quit( );
-  }
-	ecran=SDL_SetVideoMode(width, height, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
+  SDL_Surface *ecran = NULL;
+  char couleur;
+  int j[6],i;
+  int taille;
+  SDL_Event event;
+  int sz_rect;
+  Uint8 *p;
+  liste l=NULL;
+  int coup,ww;
+  SDL_Init( SDL_INIT_VIDEO );
+  ecran=SDL_SetVideoMode(width, height, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
   taille=saisir_taille(ecran);
   width=500;
   sz_rect=set_sz_rect(taille,&width);
+  /*SDL_FreeSurface(ecran);
+  SDL_VideoQuit();
+    SDL_QuitSubSystem(SDL_INIT_VIDEO); 
+    SDL_Quit();*/
   ecran=SDL_SetVideoMode(width, height, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
 	SDL_WM_SetCaption("COLOR FLOOD DE MYAJ", NULL);
 	fillScreen(ecran, 255,255,255);
@@ -179,7 +173,8 @@ int main() {
 	l=composante(g,l,taille);
   ww =win(g,taille);
   /******************************************************/
-  while (!ww && coup>0) {
+  while (!ww && coup>0) 
+{
 	    for ( i = 0; i < 6; i++)
 	    {
 	      j[i]=0;
@@ -189,19 +184,18 @@ int main() {
 	    p=clik_change(ecran);
 	    couleur=find_couleur(p);
 	    if(!couleur_marche(j,couleur))
-      {
-			  printf("La couleur que vous avez donné n'est pas jouable.\n");
-		    continue;
+            {
+	       printf("La couleur que vous avez donné n'est pas jouable.\n");
+	       continue;
 	    }
 	    coup--;
-      changeall(g,l,couleur);
-      l=composante(g,l,taille);
+       changeall(g,l,couleur);
+       l=composante(g,l,taille);
        ww=win(g,taille);
-      printf("***********ww:%d\n",ww);
-	    affiche_SDL(g,taille,ecran,sz_rect,coup,*mmax+1,0,ww);
-	    
-	    }
-      /*******************************************************/ 
+       affiche_SDL(g,taille,ecran,sz_rect,coup,*mmax+1,0,ww);
+}
+       freel(l);
+  
       while(1)
      {
        SDL_WaitEvent(&event);
@@ -211,5 +205,6 @@ int main() {
         break;
        }
     } 
+            liberation(g);
 	    return 0;
 	}
